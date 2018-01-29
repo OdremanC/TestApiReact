@@ -4,6 +4,7 @@ import promiseMiddleware from 'redux-promise-middleware';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import { createStore, applyMiddleware } from 'redux';
 
+//despacha los actions 
 const injectMiddleware = deps => ({ dispatch, getState }) => next => action =>
   next(typeof action === 'function'
     ? action({ ...deps, dispatch, getState })
@@ -17,6 +18,7 @@ export default function configureStore(options, rootReducer) {
     injectMiddleware({
       fetch: isomorphicFetch
     }),
+    //ayuda a manejas las promises agregadole sufijos
     promiseMiddleware({
       promiseTypeSuffixes: ['START', 'SUCCESS', 'ERROR']
     }),

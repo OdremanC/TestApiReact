@@ -19,9 +19,11 @@ import configureStore from './lib/configureStore';
 import rootReducer from './reducers';
 
 // Bluebird configuration
+//sirve para sobrescribir el objeto promise y lo reemplaza por el de bluebird
 window.Promise = Bluebird;
 
 Bluebird.config({ warnings: false });
+
 
 window.addEventListener('unhandledrejection', error => {
   error.preventDefault();

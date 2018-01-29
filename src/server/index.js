@@ -58,8 +58,8 @@ app.use((req, res, next) => {
 });
 
 // API dispatch
-app.use('/api/blog', blogApi);
-app.use('/api/library', libraryApi);
+//app.use('/api/blog', blogApi);
+//app.use('/api/library', libraryApi);
 
 // Sending all the traffic to React
 app.get('*', (req, res) => {

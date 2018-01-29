@@ -4,55 +4,50 @@ import queryString from 'query-string';
 // Config
 import config from '../../config';
 
-export function apiFetch(endpoint, options = {}, query = false) {
-  let qs;
+//funcion que realiza el fetch al servicio a consumir
+export function apiFetch(endpoint, options = {}, query, data,method) {
 
-  if (query) {
-    qs = queryString.stringify(query);
-  }
 
   const getPromise = async () => {
+    
     try {
-      const fetchOptions = apiOptions(options);
-      const fetchEndpoint = apiEndpoint(endpoint, qs);
+      const fetchOptions = apiOptions(options,data,method);
+      const fetchEndpoint = apiEndpoint(endpoint, query);
       const response = await fetch(fetchEndpoint, fetchOptions);
 
       return response.json();
     } catch (e) {
+
       throw e;
     }
   };
-
   return getPromise();
 }
 
-export function apiEndpoint(endpoint, qs) {
-  let query = '';
-
-  if (qs) {
-    query = `?${qs}`;
-  }
+//configuracion del endpoint del servicio a consumir
+export function apiEndpoint(endpoint, query) {
+  
 
   return `${config.api.url}${endpoint}${query}`;
 }
 
-export function apiOptions(options = {}) {
-  const {
-    method = 'GET',
-    headers = {
-      'Content-Type': 'application/json'
-    },
-    body = false
-  } = options;
+//configuracion de los headers 
+export function apiOptions(options = {} , data = '', method ='') {
+  
+  //const method = method != '' ? 'POST' : 'GET';
 
-  const newOptions = {
+  const headers = {
+      'Content-Type': 'application/json'
+  };
+ 
+  let newOptions = {
     method,
     headers,
-    credentials: 'include'
+   
   };
 
-  if (body) {
-    newOptions.body = body;
+  if (data != '') {
+    newOptions.body = JSON.stringify(data);
   }
 
   return newOptions;
