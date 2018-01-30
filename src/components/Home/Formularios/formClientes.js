@@ -47,27 +47,17 @@ class Formulario extends Component{
 		}
 	}
 	componentDidMount(){
-		if (this.props.dataToEdit._id) {
-   			this.setState({
-   				nombre: this.props.dataToEdit.name,
-   				apellido: this.props.dataToEdit.lastName,
-   				dni: this.props.dataToEdit.dni,
-   				editID: this.props.dataToEdit._id
-   			});
-   		}
 
-   		if (this.props.addOpen === true) {
-   			this.setState({
-	   			nombre: '',
-				apellido: '',
-				dni:0,
-				editID:''
-   			});
-   		}
+		this.setState({
+			nombre: this.props.dataToEdit.name,
+			apellido: this.props.dataToEdit.lastName,
+			dni: this.props.dataToEdit.dni,
+			editID: this.props.dataToEdit._id
+		});
 	}
 
+
 	render(){
-   
 		return(
 
 			<form className="form" >

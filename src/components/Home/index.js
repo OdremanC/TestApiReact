@@ -56,7 +56,8 @@ class Home extends Component {
  
   closeModal = (close) => {
     this.setState({
-      isOpen: close
+      isOpen: close,
+      editData: {}
     });
   }
 
@@ -86,22 +87,27 @@ handleEliminarIndex = (clienteID) =>{
     };
   }
   getDataFormChild = (dataFromForm) =>{
-    const query = dataFromForm._id;
+
+    
+    const query = dataFromForm.editID;
     const data = {
       name: dataFromForm.nombre,
       lastName: dataFromForm.apellido,
       dni: dataFromForm.dni
     }
-
-    if (!query) {
+    
+    //console.log(dataFromForm)
+    if (query === '') {
       this.props.AddClient(data);
+      console.log("estoy true")
     }else{
+      //console.log("estoy false")
       this.props.editCliente(query,data);
     }
     
     this.setState({ 
       isOpen: false,
-      afterSubmit: true 
+      editData: {}
     });
   }
 
@@ -136,7 +142,6 @@ handleEliminarIndex = (clienteID) =>{
                   passDataToParent = {this.getDataFormChild} 
                   putCloseModal = {this.closeModal}
                   dataToEdit={this.state.editData}
-                  addOpen={this.state.afterSubmit}
               >
               </Formulario>
             
@@ -148,7 +153,7 @@ handleEliminarIndex = (clienteID) =>{
             tableData={this.props.clientes} 
             cabeceras={cabeceras}
           >
-          
+
           </Table>
           
           <p>
