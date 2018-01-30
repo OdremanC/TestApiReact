@@ -1,5 +1,5 @@
 // Dependencies
-import React, { Component } from 'react';
+import React, { Component } from 'react'; 
 //LINK sirve para crear enlaces
 import { Link } from 'react-router-dom'; 
 import PropTypes  from 'prop-types';
@@ -26,7 +26,8 @@ class Home extends Component {
     deleteCliente: PropTypes.func.isRequired,
     editCliente: PropTypes.func.isRequired,
     handleEditar: PropTypes.func,
-    submittedValues:PropTypes.array
+    submittedValues:PropTypes.array,
+    dataRender: PropTypes.func
   };
 
   constructor(props) {
@@ -37,7 +38,8 @@ class Home extends Component {
         allClientData: [],  
         isOpen: false,
         editData: {},
-        afterSubmit:false
+        afterSubmit:false,
+        showSingle: false
       };
 
     //MODAL
@@ -45,7 +47,6 @@ class Home extends Component {
     //this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleEditarIndex = this.handleEditarIndex.bind(this);
-
   }
 
   openModal() {
@@ -63,7 +64,9 @@ class Home extends Component {
 
   componentDidMount(){  
     this.props.passAllData(); 
+
   }
+
 
 
 handleEliminarIndex = (clienteID) =>{
@@ -109,7 +112,22 @@ handleEliminarIndex = (clienteID) =>{
       editData: {}
     });
   }
+  singleClient = (parametro) => {
+    
+    var sigleData = this.props.clientes.find(function(cliente){
+      return cliente._id === parametro;
+    });
+    
 
+    if(sigleData && sigleData._id.length > 0){
+      this.setState({
+        showSingle: true,
+        allClientData: sigleData
+
+      });
+
+    };
+  }
 
   render() {
     //DATA DE CABECERAS DE LA TABLA
@@ -122,46 +140,92 @@ handleEliminarIndex = (clienteID) =>{
       {key:6,nombre: "Acciones"}
     ];
 
+    
    const { isMobile, clientes , products} = this.props; 
-   //console.log(this.state)
+  
     return (
-      <div className="Home" >
-       <button onClick={this.openModal} className= "btn btn-success"><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button> 
-      
-        <h1>Listado de Clientes</h1>
-        <div >
-         
-          <Modal 
-            show={this.state.isOpen}
-            onAfterOpen={this.afterOpenModal}
-            onClose={this.closeModal}
-            contentLabel="ModalForm" 
-          >
-           <h4>Cargar Usuarios</h4>
-              <Formulario 
-                  passDataToParent = {this.getDataFormChild} 
-                  putCloseModal = {this.closeModal}
-                  dataToEdit={this.state.editData}
-              >
-              </Formulario>
-            
-          </Modal>
-          
-          <Table 
-            handleEditar={this.handleEditarIndex} 
-            handleEliminar={e =>{this.handleEliminarIndex(e)}}  
-            tableData={this.props.clientes} 
-            cabeceras={cabeceras}
-          >
-          </Table>
-          
-          <p>
-            {isMobile ? 'Mobile device' : 'Desktop device'}
-          </p>
-        </div>
-      </div>
+      <div>
+      {
+        this.state.showSingle ?  (
+          <div>
+            <h2>Cliente:</h2>
+            <table>
+              <thead>
+                <th>Datos del Cliente</th>
+              </thead>
 
+              <tbody>
+                <tr>
+                  <td>id</td>
+                  <td>{this.state.allClientData._id}</td>
+                </tr>
+                <tr>
+                  <td>Nombre</td>
+                  <td>{this.state.allClientData.name}</td>
+                </tr>
+                <tr>
+                  <td>Apellido</td>
+                  <td>{this.state.allClientData.lastName}</td>
+                </tr>
+                <tr>
+                  <td>DNI</td>
+                  <td>{this.state.allClientData.dni}</td>
+                </tr>
+                <tr>
+                  <td>Estado Civil</td>
+                  <td>{this.state.allClientData.civilState}</td>
+                </tr>
+                <tr>
+                  <td><a className="btn btn-primary" href="/">Volver</a></td>
+                  <td></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
         
+        ):( 
+
+        <div className="Home" >
+            <button onClick={this.openModal} className= "btn btn-success"><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button> 
+
+            <h1>Listado de Clientes</h1>
+            <div >
+             
+              <Modal 
+                show={this.state.isOpen}
+                onAfterOpen={this.afterOpenModal}
+                onClose={this.closeModal}
+                contentLabel="ModalForm" 
+              >
+               <h4>Cargar Usuarios</h4>
+                  <Formulario 
+                      passDataToParent = {this.getDataFormChild} 
+                      putCloseModal = {this.closeModal}
+                      dataToEdit={this.state.editData}
+                  />
+            
+              </Modal>
+              <Table 
+                handleEditar={this.handleEditarIndex} 
+                handleEliminar={e =>{this.handleEliminarIndex(e)}}  
+                tableData={this.props.clientes} 
+                cabeceras={cabeceras}
+                singleParam={e=>{this.singleClient(e)}}
+              />
+             
+              
+              <p>
+                {isMobile ? 'Mobile device' : 'Desktop device'}
+              </p>
+
+            </div>
+          </div>
+
+
+
+        )}
+      </div>   
     );
   }
 }

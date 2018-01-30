@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import PropTypes  from 'prop-types';
+import { Link } from 'react-router-dom'; 
 
 class Table  extends Component {
 	constructor(props){
@@ -13,7 +14,8 @@ class Table  extends Component {
     	tableData: PropTypes.array,
     	cabeceras: PropTypes.array,
     	handleEditarIndex: PropTypes.func,
-    	handleEliminar: PropTypes.func
+    	handleEliminar: PropTypes.func,
+      singleParam: PropTypes.func
   	};
 
   	render(){
@@ -39,7 +41,7 @@ class Table  extends Component {
 		              tableData.map((cliente, key) => {
 		                return (
 		                  <tr key={key}>
-		                    <td>{cliente._id}</td>
+		                    <td><Link to={`/Home/${cliente._id}`} onClick={(event)=>this.props.singleParam(cliente._id)}>{cliente._id}</Link></td>
 		                    <td>{cliente.name}</td>
 		                    <td>{cliente.lastName}</td>
 		                    <td>{cliente.dni}</td>
