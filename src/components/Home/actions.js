@@ -15,7 +15,7 @@ export function passAllData() {
     payload: HomeApi.passClienteData()
   }
 }
-export function passSingleData(query,method) {
+export function passSingleData(query) {
   return {
     type: CLIENT_SHOW_SINGLE,
     payload: HomeApi.passingIdClient(query)

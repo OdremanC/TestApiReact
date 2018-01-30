@@ -1,5 +1,5 @@
 // Utils
-import { getNewState } from '../../lib/utils/frontend';
+import { getNewState } from '../../lib/utils/frontend'; 
 // Actions
 import * as actions from './actions';
 
@@ -35,10 +35,12 @@ export default function clientesReducer(state = initialState, action) {
 
     }
     case "DELETE_CLIENT_SUCCESS": {
+      //debugger;
       const { payload: { response = [] }} = action;
       var index = clientes.findIndex((cliente)=>{
-        return cliente._id === action.payload._id;
+        return cliente._id === action.payload.user._id;
       });
+
       clientes.splice(index,1);
       return getNewState(state, {
         clientes

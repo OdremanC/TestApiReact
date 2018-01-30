@@ -10,11 +10,8 @@ class Table  extends Component {
 	}
 
 	static propTypes = {
-    	tableData: PropTypes.array,
-    	cabeceras: PropTypes.array,
-    	handleEditarIndex: PropTypes.func,
-    	handleEliminar: PropTypes.func
-  	};
+    	tableData: PropTypes.array  	
+  };
 
   	render(){
    	const { cabeceras, tableData } = this.props;
@@ -36,17 +33,16 @@ class Table  extends Component {
   				 
   				<tbody>
   					{
-		              tableData.map((cliente, key) => {
+		              tableData.map((inventario, key) => {
 		                return (
 		                  <tr key={key}>
-		                    <td>{cliente._id}</td>
-		                    <td>{cliente.name}</td>
-		                    <td>{cliente.lastName}</td>
-		                    <td>{cliente.dni}</td>
-                        <td>{cliente.civilState}</td>
+		                    <td>{inventario._id}</td>
+		                    <td>{inventario.cantidad}</td>
+		                    <td>{inventario.articulo}</td>
+                        <td>{inventario.categoria}</td>
 		                    <td>
-		                      <button className="btn btn-warning" id={cliente._id} onClick={(event)=>this.props.handleEditar(event.target.id)}>Editar</button> ||
-		                      <button className="btn btn-danger" id={cliente._id} onClick={(event)=>this.props.handleEliminar(cliente._id)}>Eliminar</button>
+		                      <button className="btn btn-warning" id={inventario._id} onClick={(event)=>this.props.handleEditar(event.target.id)}>Editar</button> ||
+		                      <button className="btn btn-danger" id={inventario._id} onClick={(event)=>this.props.handleEliminar(inventario._id)}>Eliminar</button>
 		                    </td>
 		                  </tr>
 		                )

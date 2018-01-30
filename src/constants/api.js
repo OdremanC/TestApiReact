@@ -6,6 +6,11 @@ export const API = Object.freeze({
   	NEWCLIENT: '/user',
   	DELETECLIENT: '/user/',
   	UPDATE: '/user/'
-
+  },
+  STOCK:{
+  	ALLSTOCK: '/stock',
+  	DELETE: '/stock/',
+  	ADDITEM: '/stock',
+  	EDITITEM: '/stock/'
   }
 });

@@ -67,7 +67,9 @@ class Home extends Component {
 
 
 handleEliminarIndex = (clienteID) =>{
-  let query = clienteID;
+  
+  const query = clienteID;
+  //console.log(query)
   this.props.deleteCliente(query);
 }
 
@@ -93,15 +95,12 @@ handleEliminarIndex = (clienteID) =>{
     const data = {
       name: dataFromForm.nombre,
       lastName: dataFromForm.apellido,
-      dni: dataFromForm.dni
+      dni: dataFromForm.dni,
+      civilState: dataFromForm.civilState
     }
-    
-    //console.log(dataFromForm)
-    if (query === '') {
+    if (query === undefined) {
       this.props.AddClient(data);
-      console.log("estoy true")
     }else{
-      //console.log("estoy false")
       this.props.editCliente(query,data);
     }
     
@@ -115,11 +114,12 @@ handleEliminarIndex = (clienteID) =>{
   render() {
     //DATA DE CABECERAS DE LA TABLA
     const cabeceras = [
-      {key: 1,nombre: "Nombre"},
-      {key:2,nombre: "Apellido"},
-      {key:3,nombre:"DNI"},
-      {key:4,nombre:"ID"},
-      {key:5,nombre: "Acciones"}
+      {key:1,nombre:"ID"},
+      {key:2,nombre: "Nombre"},
+      {key:3,nombre: "Apellido"},
+      {key:4,nombre:"DNI"},
+      {key:5,nombre: "Estado  Civil"},
+      {key:6,nombre: "Acciones"}
     ];
 
    const { isMobile, clientes , products} = this.props; 
@@ -153,7 +153,6 @@ handleEliminarIndex = (clienteID) =>{
             tableData={this.props.clientes} 
             cabeceras={cabeceras}
           >
-
           </Table>
           
           <p>

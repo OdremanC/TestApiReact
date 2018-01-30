@@ -12,9 +12,9 @@ class Formulario extends Component{
 			nombre: '',
 			apellido: '',
 			dni:0,
-			editID:''
+			editID:'',
+			civilState: ''
 		};
-	this.sendData = this.sendData.bind(this);
 	this.handleChange = this.handleChange.bind(this);
 	}
 	static propTypes = {
@@ -23,12 +23,6 @@ class Formulario extends Component{
 		dataToEdit: PropTypes.object,
 		addOpen: PropTypes.bool
 
-	}
-	sendData =(event) =>{
-		//console.log(this.state.submittedValues)
-		if (this.state.submittedValues != undefined) {
-			this.props.passDataToParent(this.state.submittedValues)	
-		}
 	}
 
 	handleChange =(event) =>{
@@ -44,6 +38,10 @@ class Formulario extends Component{
 			this.setState({
 				dni : event.target.value
 			});
+		}else if(event.target.id === 'estadoCivil'){
+			this.setState({
+				civilState : event.target.value
+			});
 		}
 	}
 	componentDidMount(){
@@ -52,6 +50,7 @@ class Formulario extends Component{
 			nombre: this.props.dataToEdit.name,
 			apellido: this.props.dataToEdit.lastName,
 			dni: this.props.dataToEdit.dni,
+			civilState: this.props.dataToEdit.civilState,
 			editID: this.props.dataToEdit._id
 		});
 	}

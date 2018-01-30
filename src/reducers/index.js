@@ -6,12 +6,16 @@ import { combineReducers } from 'redux';
 //clientes
 import clientesData from '../components/Home/reducer';
 
+//stock
+import stockData from '../components/Stock/reducer';
+
 // Shared Reducers
 import device from './deviceReducer';
 
 const rootReducer = combineReducers({
   device,
-  clientesData
+  clientesData,
+  stockData
 });
 
 export default rootReducer;
