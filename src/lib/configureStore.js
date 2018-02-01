@@ -2,6 +2,7 @@
 import isomorphicFetch from 'isomorphic-fetch';
 import promiseMiddleware from 'redux-promise-middleware';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
+import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux';
 
 //despacha los actions 
@@ -22,7 +23,9 @@ export default function configureStore(options, rootReducer) {
     promiseMiddleware({
       promiseTypeSuffixes: ['START', 'SUCCESS', 'ERROR']
     }),
-    reduxImmutableStateInvariant()
+    reduxImmutableStateInvariant(),
+    
+    createLogger()
   ];
 
   return createStore(rootReducer, initialState, applyMiddleware(...middleware));

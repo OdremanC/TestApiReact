@@ -10,7 +10,8 @@ class HomeApi {
   	return apiFetch(API.CLIENT.CLIENTS,{},'','',method);
   }
   static passingIdClient(query){
-  	return apiFetch(API.CLIENT.CLIENT, {},query);
+    const method = "GET";
+  	return apiFetch(API.CLIENT.CLIENT, {},query,'',method);
   }
   static addNewClient(data){
   	const method = "POST";

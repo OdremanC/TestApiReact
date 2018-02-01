@@ -16,26 +16,24 @@ export default function clientesReducer(state = initialState, action) {
   switch(action.type) {
     case "PASS_ALL_DATA_SUCCESS": {
       const { payload: { response = [] }} = action;
-       return getNewState(state, {
+      return getNewState(state, {
         clientes: action.payload
       });
     }
-    case 'CLIENT_SHOW_SINGLE_SUCCESS': {
+    case 'CLIENT_SHOW_SINGLE_SUCCESS': { 
       const { payload: { response = [] }} = action;
       return getNewState(state, {
-        cliente: response
+        cliente: action.payload
       });
     }
      case "INSERT_NEW_CLIENT_SUCCESS": {
       const { payload: { response = [] }} = action;
       const dataInsert = clientes.concat([action.payload])     
-       return getNewState(state, {
+      return getNewState(state, {
         clientes: dataInsert
       });
-
     }
     case "DELETE_CLIENT_SUCCESS": {
-      //debugger;
       const { payload: { response = [] }} = action;
       var index = clientes.findIndex((cliente)=>{
         return cliente._id === action.payload.user._id;

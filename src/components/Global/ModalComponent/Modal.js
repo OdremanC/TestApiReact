@@ -41,18 +41,15 @@ class Modal extends Component {
       padding: 30,
       display: 'block'
     };
-		return (
-	      
+		return (    
 	    <div className="backdrop" style={backdropStyle}> 
-        	<div className="modal" style={modalStyle}>
-	          {this.props.children}
-
-	        <div className="footer">
-	        </div>
-	        </div>
-	    </div>
-	      
-    	);
+        <div className="modal" style={modalStyle}>
+	        {this.props.children}
+  	     <div className="footer">
+  	     </div>
+	     </div>
+	    </div>    
+    );
 	}
 }
 

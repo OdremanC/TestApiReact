@@ -22,8 +22,6 @@ class Home extends Component {
   static propTypes = {
     isMobile: PropTypes.bool,
     passAllData: PropTypes.func.isRequired,
-    clientes: PropTypes.array,
-    cliente: PropTypes.array,
     deleteCliente: PropTypes.func.isRequired,
     editCliente: PropTypes.func.isRequired,
     handleEditar: PropTypes.func,
@@ -34,19 +32,15 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
-      this.state = {
-        singleClient: false,
-        allClientData: [],  
-        isOpen: false,
-        editData: {},
-        afterSubmit:false,
-        showSingle: false
-      };
+    this.state = {
+      singleClient: false,
+      allClientData: [],  
+      isOpen: false,
+      editData: {},
+      afterSubmit:false,
+      showSingle: false
+    };
 
-    //MODAL
-    //this.openModal = this.openModal.bind(this);
-    //this.afterOpenModal = this.afterOpenModal.bind(this);
-    //this.closeModal = this.closeModal.bind(this);
     this.handleEditarIndex = this.handleEditarIndex.bind(this);
   }
 
@@ -65,13 +59,10 @@ class Home extends Component {
 
   componentDidMount(){  
     this.props.passAllData(); 
-
   }
 
   handleEliminarIndex = (clienteID) =>{
-    
     const query = clienteID;
-    //console.log(query)
     this.props.deleteCliente(query);
   }
 
@@ -81,7 +72,6 @@ class Home extends Component {
       return cliente._id === clienteID;
     });
 
-  //console.log(resultObject)
     if(resultObject && resultObject._id.length > 0){
       this.setState({
         isOpen: !this.state.isOpen,
@@ -90,8 +80,8 @@ class Home extends Component {
 
     };
   }
-  getDataFormChild = (dataFromForm) =>{
 
+  getDataFormChild = (dataFromForm) =>{
     
     const query = dataFromForm.editID;
     const data = {
@@ -100,6 +90,7 @@ class Home extends Component {
       dni: dataFromForm.dni,
       civilState: dataFromForm.civilState
     }
+
     if (query === undefined) {
       this.props.AddClient(data);
     }else{
@@ -111,13 +102,13 @@ class Home extends Component {
       editData: {}
     });
   }
+
   singleClient = (parametro) => {
     
     var sigleData = this.props.clientes.find(function(cliente){
       return cliente._id === parametro;
     });
     
-
     if(sigleData && sigleData._id.length > 0){
       this.setState({
         showSingle: true,
@@ -139,20 +130,10 @@ class Home extends Component {
       {key:6,nombre: "Acciones"}
     ];
 
-    
    const { isMobile, clientes , products} = this.props; 
   
     return (
       <div>
-      {
-        this.state.showSingle ?  (
-
-          <ShowClienteComp
-            clientData ={this.state.allClientData}
-          />
-        
-        ):( 
-
         <div className="Home" >
             <button onClick={this.openModal} className= "btn btn-success"><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button> 
 
@@ -184,10 +165,6 @@ class Home extends Component {
               </p>
             </div>
           </div>
-
-
-
-        )}
       </div>   
     );
   }

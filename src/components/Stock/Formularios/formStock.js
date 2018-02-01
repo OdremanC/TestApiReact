@@ -14,7 +14,7 @@ class Formulario extends Component{
 			categoria: '',
 			editID:''
 		};
-	this.handleChange = this.handleChange.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 	static propTypes = {
 		getDataFormChild: PropTypes.func,
@@ -26,6 +26,7 @@ class Formulario extends Component{
 	}
 
 	handleChange =(event) =>{
+
 		if (event.target.id === 'cantidad') {
 			this.setState({
 				cantidad : event.target.value
@@ -50,36 +51,34 @@ class Formulario extends Component{
 		});
 	}
 
-
 	render(){
 		return(
 
 			<form className="form" >
-			  <label htmlFor="nombre"> Cantidad:</label>
-			  <input type="hidden" id ="editID" value={this.state.editID} name="editID" />
-			  <input type="Number" className="form-control" id="cantidad" value={this.state.cantidad}  onChange={this.handleChange} />
-			  <label htmlFor="articulo">Articulo:</label>
-			  <select className="form-control" id="articulo" onChange={this.handleChange}>
-			    <option value={this.state.articulo}>{this.state.articulo}</option>
-			    <option value ="Taladro">Taladro</option>
-			    <option value ="Martillo">Martillo</option>
-			    <option value ="Brochas">Brochas</option>
-			  </select>
-			  <label htmlFor="categoria">Categoria:</label>
-			  <select className="form-control" id="categoria" onChange={this.handleChange}>
-			    <option value={this.state.categoria}>{this.state.categoria}</option>
-			    <option value ="Herramientas">Herramientas</option>
-			    <option value ="Computacion">Computacion</option>
-			  </select>
+			  	<label htmlFor="nombre"> Cantidad:</label>
+			  	<input type="hidden" id ="editID" value={this.state.editID} name="editID" />
+			  	<input type="Number" className="form-control" id="cantidad" value={this.state.cantidad}  onChange={this.handleChange} />
+			  	<label htmlFor="articulo">Articulo:</label>
+			  	<select className="form-control" id="articulo" onChange={this.handleChange}>
+			    	<option value={this.state.articulo}>{this.state.articulo}</option>
+			    	<option value ="Taladro">Taladro</option>
+			    	<option value ="Martillo">Martillo</option>
+			    	<option value ="Brochas">Brochas</option>
+			  	</select>
+			  	<label htmlFor="categoria">Categoria:</label>
+			  	<select className="form-control" id="categoria" onChange={this.handleChange}>
+			    	<option value={this.state.categoria}>{this.state.categoria}</option>
+			    	<option value ="Herramientas">Herramientas</option>
+			    	<option value ="Computacion">Computacion</option>
+			  	</select>
 			
-			  <div className ="col-md-6" >
-			    <input className="form-control btn btn-success" type="button" value="Submit" onClick={(event) => {this.props.passDataToParent(this.state)}} /> 
-			  </div>
-			  <div className ="col-md-6">
-			    <button className ="form-control btn btn-danger" onClick={(event)=>this.props.putCloseModal(false)} >close</button>
-			  </div>
+			  	<div className ="col-md-6" >
+			    	<input className="form-control btn btn-success" type="button" value="Submit" onClick={(event) => {this.props.passDataToParent(this.state)}} /> 
+			  	</div>
+			  	<div className ="col-md-6">
+			    	<button className ="form-control btn btn-danger" onClick={(event)=>this.props.putCloseModal(false)} >close</button>
+			  	</div>
 			</form>
-
 		);
 	}
 }

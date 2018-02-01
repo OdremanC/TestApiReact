@@ -1,59 +1,44 @@
 // Dependencies
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
+import { connect } from 'react-redux';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import PropTypes  from 'prop-types';
+import * as actions from './actions';
 
 class ShowCliente extends Component{
+
 	 constructor(props){
 	 	super(props);
+	 	this.state={
+	 		
+	 	}
 	 }
 
 	 static propTypes = {
-	 	clientData: PropTypes.object
+	 	passSingleData: PropTypes.func
+	 }
+	 componentDidMount(){
+	 	if (this.props.match.params.id) {
+	 		const query = this.props.match.params.id;
+	 		this.props.passSingleData(query);
+	 	}
 	 }
 
-
 	 render(){
-
+	  	const { clientData } = this.props;
 	 	return (
-
 	 		<div>
 	            <h2>Cliente:</h2>
-	            <table>
-	              <thead>
-	                <th>Datos del Cliente</th>
-	              </thead>
-
-	              <tbody>
-	                <tr>
-	                  <td>id</td>
-	                  <td>{this.props.clientData._id}</td>
-	                </tr>
-	                <tr>
-	                  <td>Nombre</td>
-	                  <td>{this.props.clientData.name}</td>
-	                </tr>
-	                <tr>
-	                  <td>Apellido</td>
-	                  <td>{this.props.clientData.lastName}</td>
-	                </tr>
-	                <tr>
-	                  <td>DNI</td>
-	                  <td>{this.props.clientData.dni}</td>
-	                </tr>
-	                <tr>
-	                  <td>Estado Civil</td>
-	                  <td>{this.props.clientData.civilState}</td>
-	                </tr>
-	                <tr>
-	                  <td><a className="btn btn-primary" href="/">Volver</a></td>
-	                  <td></td>
-	                </tr>
-
-	              </tbody>
-	            </table>
+	            <p>Nombre: <b>{clientData.name}</b></p>
+	            <p>Apellido: <b>{clientData.lastName}</b></p>
+	            <p>DNI: <b>{clientData.dni}</b></p>
+	            <p>Estado Civil: <b>{clientData.civilState}</b></p>
+	           	<Link to="/" className="btn btn-success">Volver</Link>
 	        </div>
 	 	);
 	 }
 }
-export default ShowCliente;
+export default connect(state => ({
+  clientData: state.clientesData.cliente
+}), actions)(ShowCliente);

@@ -11,15 +11,15 @@ const EDIT_CLIENT = 'EDIT_CLIENT';
 //debugger
 export function passAllData() {
 	return {
-    type: PASS_ALL_DATA,
-    payload: HomeApi.passClienteData()
-  }
+    	type: PASS_ALL_DATA,
+    	payload: HomeApi.passClienteData()
+  	}
 }
 export function passSingleData(query) {
   return {
-    type: CLIENT_SHOW_SINGLE,
-    payload: HomeApi.passingIdClient(query)
-  };
+    	type: CLIENT_SHOW_SINGLE,
+    	payload: HomeApi.passingIdClient(query)
+  	};
 }
 export function AddClient(data){
 	return {

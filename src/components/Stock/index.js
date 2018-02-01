@@ -64,9 +64,7 @@ class Stock extends Component {
 	        isOpen: !this.state.isOpen,
 	        editData:resultObject
 	      });
-
 	    };
-
 	}
 
 	getDataFormChild = (dataFromForm) =>{
@@ -126,11 +124,8 @@ class Stock extends Component {
         		passDataToParent = {this.getDataFormChild}
         		dataToEdit={this.state.editData}
         		putCloseModal = {this.closeModal}
-        	>
-        	</Formulario>
-
+        	/>
         </Modal>
-
       </div>
     );
   }

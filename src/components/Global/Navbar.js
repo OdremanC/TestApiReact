@@ -24,9 +24,9 @@ class Navbar extends Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
               {
-                  items && items.map(
-                    (item, key) => <li key={key} className="nav-li"><Link className="link-nav" to={item.url}>{item.title}</Link></li>
-                  )
+                items && items.map(
+                  (item, key) => <li key={key} className="nav-li"><Link className="link-nav" to={item.url}>{item.title}</Link></li>
+                )
               }
           </ul>
           <form className="form-inline my-2 my-lg-0">

@@ -22,7 +22,5 @@ class StockApi {
     const method ="PUT";
     return apiFetch(API.STOCK.EDITITEM,{},query,data,method)
   }
-
 }
-
 export default StockApi;

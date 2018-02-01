@@ -29,6 +29,7 @@ class Paginador extends Component{
 	}
 
 	handleClick = (event) => {
+		event.preventDefault();
 	    this.setState({
 	    	number: Number(event.target.id)
 	    });

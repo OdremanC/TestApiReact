@@ -34,14 +34,13 @@ class Table  extends Component {
     });
   }
   getNumberPage = (event) =>{
-    console.log(event)
     this.setState({
       numberPage:event
     });
   }
 
   	render(){
-      //console.log(this.state)
+  
      	const { cabeceras, tableData } = this.props;
       const { data, numberPage, dataPerPage} = this.state;
 
@@ -53,13 +52,13 @@ class Table  extends Component {
   			<div className="Table">
     			<table className="table" id="clientes">
     				<thead className="thead-dark">
-    				{
-    					cabeceras.map((cabecera,key)=>{
-    						return(
-    							<th key={key} scope="col">{cabecera.nombre}</th>
-    						);	
-    					})
-    				}
+      				{
+      					cabeceras.map((cabecera,key)=>{
+      						return(
+      							<th key={key} scope="col">{cabecera.nombre}</th>
+      						);	
+      					})
+      				}
     				</thead>
     				 
     				<tbody>
@@ -67,7 +66,7 @@ class Table  extends Component {
                 currentData.map((cliente, key) => {
                   return (
                     <tr key={key}>
-                      <td><Link to={`/Home/${cliente._id}`} onClick={(event)=>this.props.singleParam(cliente._id)}>{cliente._id}</Link></td>
+                      <td><Link to={`/${cliente._id}`} onClick={(event)=>this.props.singleParam(cliente._id)}>{cliente._id}</Link></td>
                       <td>{cliente.name}</td>
                       <td>{cliente.lastName}</td>
                       <td>{cliente.dni}</td>
@@ -88,7 +87,6 @@ class Table  extends Component {
             getDataPage ={(event)=>this.getDataPerPage(event)}
             PageNumber = {(event)=>this.getNumberPage(event)}
           />
-
   			</div>
   		);
   	}

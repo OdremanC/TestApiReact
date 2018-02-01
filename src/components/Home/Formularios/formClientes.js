@@ -5,6 +5,7 @@ import PropTypes  from 'prop-types';
 
 
 class Formulario extends Component{
+	
 	constructor(props){
 		super(props);
 
@@ -15,8 +16,9 @@ class Formulario extends Component{
 			editID:'',
 			civilState: ''
 		};
-	this.handleChange = this.handleChange.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
+	
 	static propTypes = {
 		getDataFormChild: PropTypes.func,
 		putCloseModal: PropTypes.func,
@@ -60,26 +62,26 @@ class Formulario extends Component{
 		return(
 
 			<form className="form" >
-			  <label htmlFor="nombre"> Name:</label>
-			  <input type="hidden" id ="editID" value={this.state.editID} name="editID" />
-			  <input type="text" className="form-control" id="nombre" placeholder="Nombre..." value={this.state.nombre}  onChange={this.handleChange} />
-			  <label htmlFor="apellido">lastName:</label>
-			  <input type="text" className="form-control" id="apellido" placeholder="Apellido..." value={this.state.apellido}  onChange={this.handleChange} />
-			  <label htmlFor="dni">DNI:</label>
-			  <input type="number" className="form-control" id="dni" placeholder="DNI..." value={this.state.dni}  onChange={this.handleChange} />
-			  <label htmlFor="estadoCivil">Estado Civil:</label>
-			  <select className="form-control" id="estadoCivil" onChange={this.handleChange}>
-			    <option value={this.state.civilState}>{this.state.civilState}</option>
-			    <option value ="Casado">Casado</option>
-			    <option value ="Soltero">Soltero</option>
-			  </select>
+			  	<label htmlFor="nombre"> Name:</label>
+			  	<input type="hidden" id ="editID" value={this.state.editID} name="editID" />
+			  	<input type="text" className="form-control" id="nombre" placeholder="Nombre..." value={this.state.nombre}  onChange={this.handleChange} />
+			  	<label htmlFor="apellido">lastName:</label>
+			  	<input type="text" className="form-control" id="apellido" placeholder="Apellido..." value={this.state.apellido}  onChange={this.handleChange} />
+			  	<label htmlFor="dni">DNI:</label>
+			  	<input type="number" className="form-control" id="dni" placeholder="DNI..." value={this.state.dni}  onChange={this.handleChange} />
+			  	<label htmlFor="estadoCivil">Estado Civil:</label>
+			  	<select className="form-control" id="estadoCivil" onChange={this.handleChange}>
+			    	<option value={this.state.civilState}>{this.state.civilState}</option>
+			    	<option value ="Casado">Casado</option>
+			    	<option value ="Soltero">Soltero</option>
+			  	</select>
 
-			  <div className ="col-md-6" >
-			    <input className="form-control btn btn-success" type="button" value="Submit" onClick={(event) => {this.props.passDataToParent(this.state)}} /> 
-			  </div>
-			  <div className ="col-md-6">
-			    <button className ="form-control btn btn-danger" onClick={(event)=>this.props.putCloseModal(false)} >close</button>
-			  </div>
+			  	<div className ="col-md-6" >
+			    	<input className="form-control btn btn-success" type="button" value="Submit" onClick={(event) => {this.props.passDataToParent(this.state)}} /> 
+			  	</div>
+			  	<div className ="col-md-6">
+			    	<button className ="form-control btn btn-danger" onClick={(event)=>this.props.putCloseModal(false)} >close</button>
+			  	</div>
 			</form>
 
 		);
