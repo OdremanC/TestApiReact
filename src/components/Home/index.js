@@ -14,6 +14,7 @@ import * as actions from './actions';
 
 //formulario
 import Formulario from './Formularios/formClientes';
+import ShowClienteComp from './ShowClientesComp';
 
 
 class Home extends Component {
@@ -43,18 +44,18 @@ class Home extends Component {
       };
 
     //MODAL
-    this.openModal = this.openModal.bind(this);
+    //this.openModal = this.openModal.bind(this);
     //this.afterOpenModal = this.afterOpenModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+    //this.closeModal = this.closeModal.bind(this);
     this.handleEditarIndex = this.handleEditarIndex.bind(this);
   }
 
-  openModal() {
+  openModal =() =>{
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
- 
+   
   closeModal = (close) => {
     this.setState({
       isOpen: close,
@@ -67,14 +68,12 @@ class Home extends Component {
 
   }
 
-
-
-handleEliminarIndex = (clienteID) =>{
-  
-  const query = clienteID;
-  //console.log(query)
-  this.props.deleteCliente(query);
-}
+  handleEliminarIndex = (clienteID) =>{
+    
+    const query = clienteID;
+    //console.log(query)
+    this.props.deleteCliente(query);
+  }
 
   handleEditarIndex = (event) => {
     const clienteID = event;
@@ -147,42 +146,10 @@ handleEliminarIndex = (clienteID) =>{
       <div>
       {
         this.state.showSingle ?  (
-          <div>
-            <h2>Cliente:</h2>
-            <table>
-              <thead>
-                <th>Datos del Cliente</th>
-              </thead>
 
-              <tbody>
-                <tr>
-                  <td>id</td>
-                  <td>{this.state.allClientData._id}</td>
-                </tr>
-                <tr>
-                  <td>Nombre</td>
-                  <td>{this.state.allClientData.name}</td>
-                </tr>
-                <tr>
-                  <td>Apellido</td>
-                  <td>{this.state.allClientData.lastName}</td>
-                </tr>
-                <tr>
-                  <td>DNI</td>
-                  <td>{this.state.allClientData.dni}</td>
-                </tr>
-                <tr>
-                  <td>Estado Civil</td>
-                  <td>{this.state.allClientData.civilState}</td>
-                </tr>
-                <tr>
-                  <td><a className="btn btn-primary" href="/">Volver</a></td>
-                  <td></td>
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
+          <ShowClienteComp
+            clientData ={this.state.allClientData}
+          />
         
         ):( 
 
@@ -204,7 +171,6 @@ handleEliminarIndex = (clienteID) =>{
                       putCloseModal = {this.closeModal}
                       dataToEdit={this.state.editData}
                   />
-            
               </Modal>
               <Table 
                 handleEditar={this.handleEditarIndex} 
@@ -213,12 +179,9 @@ handleEliminarIndex = (clienteID) =>{
                 cabeceras={cabeceras}
                 singleParam={e=>{this.singleClient(e)}}
               />
-             
-              
               <p>
                 {isMobile ? 'Mobile device' : 'Desktop device'}
               </p>
-
             </div>
           </div>
 

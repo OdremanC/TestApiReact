@@ -52,3 +52,4 @@ export function apiOptions(options = {} , data = '', method ='') {
 
   return newOptions;
 }
+ 

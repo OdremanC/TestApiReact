@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import PropTypes  from 'prop-types';
+import '../css/Stock.css';
 
 class Table  extends Component {
 	constructor(props){

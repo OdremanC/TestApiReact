@@ -69,7 +69,7 @@ class Formulario extends Component{
 			  <input type="number" className="form-control" id="dni" placeholder="DNI..." value={this.state.dni}  onChange={this.handleChange} />
 			  <label htmlFor="estadoCivil">Estado Civil:</label>
 			  <select className="form-control" id="estadoCivil" onChange={this.handleChange}>
-			    <option value={this.state.estadoCivil}>{this.state.estadoCivil}</option>
+			    <option value={this.state.civilState}>{this.state.civilState}</option>
 			    <option value ="Casado">Casado</option>
 			    <option value ="Soltero">Soltero</option>
 			  </select>
