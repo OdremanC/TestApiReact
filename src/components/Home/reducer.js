@@ -36,7 +36,7 @@ export default function clientesReducer(state = initialState, action) {
     case "DELETE_CLIENT_SUCCESS": {
       const { payload: { response = [] }} = action;
       var index = clientes.findIndex((cliente)=>{
-        return cliente._id === action.payload.user._id;
+        return cliente._id === action.payload.client._id;
       });
 
       clientes.splice(index,1);

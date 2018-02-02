@@ -35,7 +35,7 @@ class ShowCliente extends Component{
 	            <p>Apellido: <b>{clientData.lastName}</b></p>
 	            <p>DNI: <b>{clientData.dni}</b></p>
 	            <p>Estado Civil: <b>{clientData.civilState}</b></p>
-	           	<Link to="/" className="btn btn-success">Volver</Link>
+	           	<Link to="/home" className="btn btn-success">Volver</Link>
 	        </div>
 	 	);
 	 }

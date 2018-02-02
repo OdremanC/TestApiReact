@@ -27,7 +27,8 @@
     "redux-immutable-state-invariant": "^2.0.0",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^4.3.0",
-    "redux-react-form": "^0.1.4"
+    "redux-react-form": "^0.1.4",
+    "universal-cookie": "^2.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

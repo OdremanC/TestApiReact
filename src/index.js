@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Bluebird from 'bluebird';
 import { Provider } from 'react-redux';
 
+
 // Routes
 import AppRoutes from './routes';
 
@@ -41,7 +42,7 @@ const store = configureStore({
 render(
   <Provider store={store}>
     <Router>
-      <AppRoutes />
+        <AppRoutes />
     </Router>
   </Provider>,
   document.getElementById('root')

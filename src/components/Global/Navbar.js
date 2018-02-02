@@ -2,6 +2,8 @@
 import React, { Component } from 'react';  
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 // Assets
 import './css/Navbar.css';
@@ -12,7 +14,12 @@ class Navbar extends Component {
     items: PropTypes.array.isRequired
   };
 
+  componentDidMount(){
+
+  }
+
   render() {
+    
     const { title, items } = this.props;
 
     return (

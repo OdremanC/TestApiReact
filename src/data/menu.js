@@ -1,9 +1,12 @@
 export default [
   {
     title: 'Home',
-    url: '/'
+    url: '/home'
   },{
   	title: 'Stock',
   	url: '/Stock'
+  },{
+  	title: 'Users',
+  	url: '/Users'
   }
 ];

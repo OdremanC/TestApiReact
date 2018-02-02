@@ -26,8 +26,12 @@ export default function stockReducer(state = initialState, action){
 		}
 		case "DELETE_ITEM_SUCCESS":{
 			const { payload: { response = [] }} = action;
+			var index = inventario.findIndex((inventario)=>{
+		        return inventario._id === action.payload.stock._id;
+		    });
+		    inventario.splice(index,1);
 			return getNewState(state, {
-
+				inventario
 			});
 		}
 		case "ADD_STOCK_ITEM_SUCCESS":{
@@ -39,7 +43,7 @@ export default function stockReducer(state = initialState, action){
 		}
 		case "EDIT_STOCK_ITEM_SUCCESS":{
 			const { payload: { response = [] }} = action;
-	 	        var index = inventario.findIndex((inventario)=>{
+	 	    var index = inventario.findIndex((inventario)=>{
 		        return inventario._id === action.payload._id;
 		    });
 
