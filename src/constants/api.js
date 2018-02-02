@@ -11,6 +11,7 @@ export const API = Object.freeze({
   	ALLSTOCK: '/stock',
   	DELETE: '/stock/',
   	ADDITEM: '/stock',
-  	EDITITEM: '/stock/'
+  	EDITITEM: '/stock/',
+    GETSINGLE: '/stock/'
   }
 });

@@ -7,7 +7,7 @@ import PropTypes  from 'prop-types';
 //conexion a redux
 import { connect } from 'react-redux';
 // Utils
-import { isFirstRender } from '../../lib/utils/frontend';
+import { isFirstRender } from '../../lib/utils/frontend'; 
 import  Modal from '../Global/ModalComponent/Modal';
 import Table from './tableComponents/TableGenerator';
 import Formulario from './Formularios/formStock';
@@ -20,7 +20,8 @@ class Stock extends Component {
 		this.state = {
 			inventario: [],
 			isOpen: false,
-			editData: {}
+			editData: {},
+			sigleArticleData:{}
 		}
 	
 	}
@@ -90,6 +91,20 @@ class Stock extends Component {
 
 	}
 
+	singleClient = (parametro) => {
+    
+	    var sigleData = this.props.inventario.find(function(inventario){
+	      return inventario._id === parametro;
+	    });
+	    
+	    if(sigleData && sigleData._id.length > 0){
+	      this.setState({
+	        showSingle: true,
+	        sigleArticleData: sigleData
+	      });
+	    };
+	}
+
   render() {
   	const { inventario } = this.props; 
   	    //DATA DE CABECERAS DE LA TABLA
@@ -110,6 +125,7 @@ class Stock extends Component {
         	tableData ={this.props.inventario}
         	handleEliminar = {e =>this.handleEliminarItem(e)}
         	handleEditar = {e =>this.handleEditarIndex(e)}
+        	singleParam={e=>{this.singleClient(e)}}
         >
         </Table>
 

@@ -4,7 +4,8 @@ import { getNewState } from '../../lib/utils/frontend';
 import * as actions from './actions';
 
 const initialState = {
-	inventario: []
+	inventario: [],
+	SingleInventario: []
 }
 
 export default function stockReducer(state = initialState, action){
@@ -17,16 +18,17 @@ export default function stockReducer(state = initialState, action){
 	        	inventario: action.payload
 	      	});
 		}
+		case "GET_SINGLE_DATA_SUCCESS":{
+			const { payload: { response = [] }} = action;
+	      	return getNewState(state, {
+	        	SingleInventario: action.payload
+	      	});
+		}
 		case "DELETE_ITEM_SUCCESS":{
 			const { payload: { response = [] }} = action;
-	 	    var index = inventario.findIndex((inventario)=>{
-		        return inventario._id === action.payload.stock._id;
-		    });
+			return getNewState(state, {
 
-		    inventario.splice(index,1);
-	      	return getNewState(state, {
-	        	inventario
-	      	});
+			});
 		}
 		case "ADD_STOCK_ITEM_SUCCESS":{
 			const { payload: { response = [] }} = action;

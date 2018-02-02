@@ -40,7 +40,7 @@ class Table  extends Component {
   }
 
   	render(){
-  
+    console.log(this.props)
      	const { cabeceras, tableData } = this.props;
       const { data, numberPage, dataPerPage} = this.state;
 
@@ -66,7 +66,7 @@ class Table  extends Component {
                 currentData.map((cliente, key) => {
                   return (
                     <tr key={key}>
-                      <td><Link to={`/${cliente._id}`} onClick={(event)=>this.props.singleParam(cliente._id)}>{cliente._id}</Link></td>
+                      <td><Link to={`SingleClient/${cliente._id}`} onClick={(event)=>this.props.singleParam(cliente._id)}>{cliente._id}</Link></td>
                       <td>{cliente.name}</td>
                       <td>{cliente.lastName}</td>
                       <td>{cliente.dni}</td>

@@ -10,6 +10,10 @@ class StockApi {
   	const method = "GET";
   	return apiFetch(API.STOCK.ALLSTOCK,{},'','',method);
   }
+  static getStockSingleData(query){
+    const method = "GET";
+    return apiFetch(API.STOCK.GETSINGLE, {},query,'',method);
+  }
   static deleteStockItem(query) {
   	const method = "DELETE";
   	return apiFetch(API.STOCK.DELETE,{},query,'', method);
