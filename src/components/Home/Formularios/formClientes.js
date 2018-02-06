@@ -75,12 +75,13 @@ class Formulario extends Component{
 			    	<option value ="Casado">Casado</option>
 			    	<option value ="Soltero">Soltero</option>
 			  	</select>
-
-			  	<div className ="col-md-6" >
-			    	<input className="form-control btn btn-success" type="button" value="Submit" onClick={(event) => {this.props.passDataToParent(this.state)}} /> 
-			  	</div>
-			  	<div className ="col-md-6">
-			    	<button className ="form-control btn btn-danger" onClick={(event)=>this.props.putCloseModal(false)} >close</button>
+			  	<div className="row">
+			  		<div className="col-md-6 ">
+					  	<button className="btn btn-success" type="button" onClick={(event) => {this.props.passDataToParent(this.state)}}>Guardar</button> 
+					</div>
+					<div className="col-md-6" >
+						<button className ="form-control btn btn-danger" onClick={(event)=>this.props.putCloseModal(false)} >close</button>
+					</div>
 			  	</div>
 			</form>
 

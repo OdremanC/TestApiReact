@@ -9,7 +9,8 @@ class FormLogin extends Component{
 		super(props);
 		this.state = {
 			usuario:'',
-			password:''
+			password:'',
+			
 		};
 	}
 
@@ -36,24 +37,19 @@ class FormLogin extends Component{
 			
 			<div className="container">
 				<div className="row">
-					<form className="form">
+					<form className="formLogin">
 
 					  <div className="container">
+					   <p id="errorData">{
+					    	this.props.errorData && this.props.errorData 
+					    }</p>
 					    <label><b>Username</b></label>
 					    <input className="loginIn" type="text" placeholder="Enter Username" value={this.state.usuario} name="usuario" id="usuario" onChange={this.handleChange} required />
-
+					   
 					    <label><b>Password</b></label>
 					    <input className="loginIn" type="password" placeholder="Enter Password" id="password" value={this.state.password} name="pass" onChange={this.handleChange} required />
 					        
 					    <button className="logbutton" type="button" onClick={(event) => {this.props.getDataFrom(this.state)}}>Login</button>
-					    <label>
-					      <input className="loginIn" type="checkbox" checked="checked" /> Remember me
-					    </label>
-					  </div>
-
-					  <div className="container" >
-					    <button type="button" className="cancelbtn logbutton">Cancel</button>
-					    <span className="psw">Forgot <a href="#">password?</a></span>
 					  </div>
 					</form>
 				</div>

@@ -17,7 +17,9 @@ export const API = Object.freeze({
   USERS:{
     ALLUSERS: '/users',
     DELETE:  '/users/',
-    SETLOGIN: '/users/'
+    SETLOGIN: '/users/',
+    ADD: '/users',
+    EDIT: '/users/'
   }
 
 });

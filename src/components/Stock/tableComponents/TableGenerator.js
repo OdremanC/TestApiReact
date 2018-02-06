@@ -67,8 +67,8 @@ class Table  extends Component {
 		                    <td>{inventario.articulo}</td>
                         <td>{inventario.categoria}</td>
 		                    <td>
-		                      <button className="btn btn-warning" id={inventario._id} onClick={(event)=>this.props.handleEditar(event.target.id)}>Editar</button> ||
-		                      <button className="btn btn-danger" id={inventario._id} onClick={(event)=>this.props.handleEliminar(inventario._id)}>Eliminar</button>
+		                      <button className="btn btn-warning boton" id={inventario._id} onClick={(event)=>this.props.handleEditar(event.target.id)}>Editar</button>
+		                      <button className="btn btn-danger boton" id={inventario._id} onClick={(event)=>this.props.handleEliminar(inventario._id)}>Eliminar</button>
 		                    </td>
 		                  </tr>
 		                )

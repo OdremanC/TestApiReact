@@ -2,7 +2,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+//import { BrowserRouter as Router } from 'react-router-dom';
 import Bluebird from 'bluebird';
 import { Provider } from 'react-redux';
 
@@ -18,6 +18,12 @@ import configureStore from './lib/configureStore';
 
 // Reducers
 import rootReducer from './reducers';
+
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
+
+import { history} from './lib/configureStore';
+
+
 
 // Bluebird configuration
 //sirve para sobrescribir el objeto promise y lo reemplaza por el de bluebird
@@ -41,9 +47,9 @@ const store = configureStore({
 
 render(
   <Provider store={store}>
-    <Router>
+    <ConnectedRouter history={history}>
         <AppRoutes />
-    </Router>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );

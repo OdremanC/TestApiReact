@@ -10,7 +10,7 @@ const initialState = {
 }
 
 export default function stockReducer(state = initialState, action){
-	const users = Object.assign([], state.users);
+	const dataUsers = Object.assign([], state.users);
 
 	switch(action.type){
 		case "GET_ALL_USERS_SUCCESS":{
@@ -22,12 +22,12 @@ export default function stockReducer(state = initialState, action){
 		case "DELETE_USER_SUCCESS":{
 			const { payload: { response = [] }} = action;
 	      	
-			var index = users.findIndex((users)=>{
+			var index = editUser.findIndex((users)=>{
 		        return users._id === action.payload.users._id;
 		    });
-		    users.splice(index,1);
+		    editUser.splice(index,1);
 			return getNewState(state, {
-				users
+				users: editUser
 			});
 		}
 		case 'GET_USER_SUCCESS': { 
@@ -37,17 +37,28 @@ export default function stockReducer(state = initialState, action){
 	      });
 	    }
 	    case "SET_LOGGIN_USER_SUCCESS":{
-		
 			const { payload: { response = [] }} = action;
-	      	
-			var index = users.findIndex((users)=>{
+			return getNewState(state, {
+				isLogged:action.payload
+			});
+		}
+		case "ADD_NEW_USER_SUCCESS":{
+			const { payload: { response = [] }} = action;
+			const dataInsert = users.concat([action.payload]);  
+			return getNewState(state, {
+				users: dataInsert
+			});
+		}
+		case "EDIT_USER_SUCCESS":{
+			
+			const { payload: {response = [] }} = action;
+			var index = dataUsers.findIndex((users)=>{
 		        return users._id === action.payload._id;
 		    });
-		    users[index] = action.payload;
-			return getNewState(state, {
-				isLogged:action.payload.isLogged,
-				users: users
-			});
+		    dataUsers[index] = action.payload;
+		    return getNewState(state, {
+		    	users: dataUsers
+		    });
 		}
 		
     	default:

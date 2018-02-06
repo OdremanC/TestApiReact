@@ -71,13 +71,16 @@ class Formulario extends Component{
 			    	<option value ="Herramientas">Herramientas</option>
 			    	<option value ="Computacion">Computacion</option>
 			  	</select>
+			  	<div className="row">
+			  		<div className="col-md-6 ">
+					  	<button className="form-control btn btn-success" onClick={(event) => {this.props.passDataToParent(this.state)}}>Guardar</button> 
+					</div>
+					<div className="col-md-6" >
+						<button className ="form-control btn btn-danger" onClick={(event)=>this.props.putCloseModal(false)} >close</button>
+					</div>
+			  	</div>
 			
-			  	<div className ="col-md-6" >
-			    	<input className="form-control btn btn-success" type="button" value="Submit" onClick={(event) => {this.props.passDataToParent(this.state)}} /> 
-			  	</div>
-			  	<div className ="col-md-6">
-			    	<button className ="form-control btn btn-danger" onClick={(event)=>this.props.putCloseModal(false)} >close</button>
-			  	</div>
+
 			</form>
 		);
 	}

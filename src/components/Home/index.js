@@ -12,9 +12,12 @@ import  Table from './tableComponents/TableGenerator';
 // Actions
 import * as actions from './actions';
 
+import { getValueLogin } from '../Global/Functions/';
 //formulario
 import Formulario from './Formularios/formClientes';
 import ShowClienteComp from './ShowClientesComp';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 
 class Home extends Component {
@@ -56,7 +59,12 @@ class Home extends Component {
       editData: {}
     });
   }
+  componentWillMount(){
 
+    if (getValueLogin() !== true) {
+         this.props.history.push('/login');
+    }
+  }
   componentDidMount(){  
     this.props.passAllData(); 
   }
@@ -135,9 +143,9 @@ class Home extends Component {
     return (
       <div>
         <div className="Home" >
-            <button onClick={this.openModal} className= "btn btn-success"><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button> 
+            <button onClick={this.openModal} className= "btn btn-success">Add</button> 
 
-            <h1>Listado de Clientes</h1>
+            <h2>Listado de Clientes</h2>
             <div >
              
               <Modal 
@@ -146,7 +154,7 @@ class Home extends Component {
                 onClose={this.closeModal}
                 contentLabel="ModalForm" 
               >
-               <h4>Cargar Usuarios</h4>
+               <h4>Cargar Clientes</h4>
                   <Formulario 
                       passDataToParent = {this.getDataFormChild} 
                       putCloseModal = {this.closeModal}

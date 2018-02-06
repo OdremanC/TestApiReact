@@ -4,6 +4,11 @@ import promiseMiddleware from 'redux-promise-middleware';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux';
+import createHistory from 'history/createBrowserHistory';
+
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+export const history = createHistory();
+
 
 //despacha los actions 
 const injectMiddleware = deps => ({ dispatch, getState }) => next => action =>
@@ -15,6 +20,7 @@ const injectMiddleware = deps => ({ dispatch, getState }) => next => action =>
 export default function configureStore(options, rootReducer) {
   const { initialState = {} } = options;
 
+
   const middleware = [
     injectMiddleware({
       fetch: isomorphicFetch
@@ -25,7 +31,9 @@ export default function configureStore(options, rootReducer) {
     }),
     reduxImmutableStateInvariant(),
     
-    createLogger()
+    createLogger(),
+    routerMiddleware(history)
+    
   ];
 
   return createStore(rootReducer, initialState, applyMiddleware(...middleware));

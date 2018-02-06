@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom';
 import PropTypes  from 'prop-types';
 //conexion a redux
 import { connect } from 'react-redux';
-// Utils
-//import { isFirstRender } from '../../lib/utils/frontend'; 
-//import  Modal from '../Global/ModalComponent/Modal';
+import { getValueLogin } from '../Global/Functions/';
+
+import  Modal from '../Global/ModalComponent/Modal';
+import Formulario from './Formularios/formUsers';
 import Table from './tableComponents/TableGenerator';
 //import Formulario from './Formularios/formStock';
 import * as actions from './actions';
@@ -16,33 +17,104 @@ import * as actions from './actions';
 class Users extends Component {
 	constructor(props){
 		super(props)
+		this.state={
+
+			isOpen:false,
+			editData:{}
+		}
 	}
 
 	static proptypes = {
 		getAllUsers: PropTypes.func
 	}
+	componentWillMount(){
+		if (getValueLogin() !== true) {
+        	this.props.history.push('/login');
+    	}
+	}
 	componentDidMount(){
     	this.props.getAllUsers();
   	}
-
+  	openModal =() =>{
+    	this.setState({
+      		isOpen: !this.state.isOpen
+    	});
+  	}
+   
+  	closeModal = (close) => {
+    	this.setState({
+      		isOpen: close,
+      		editData: {}
+    	});
+  	}
   	handleEliminarItem = (id) =>{
 		const query = id;
 		this.props.deleteUser(query);
 	}
 
+	handleEditarIndex = (event) => {
+	    const userID = event;
+	    var resultObject = this.props.DataUsers.find(function(user){
+	      return user._id === userID;
+	    });
+
+	    if(resultObject && resultObject._id.length > 0){
+	      this.setState({
+	        isOpen: !this.state.isOpen,
+	        editData:resultObject
+	      });
+
+	    };
+	}
+	getDataFormChild = (dataFromForm) =>{
+    	
+	    const query = dataFromForm.editID;
+	    const data = {
+	      	userName: dataFromForm.userName,
+	      	email: dataFromForm.email,
+	      	password: dataFromForm.password
+	    }
+
+	    if (query === undefined) {
+	    	this.props.AddUser(data);
+	    }else{
+	      	this.props.editUserData(query,data);
+	    }
+	    
+	    this.setState({ 
+	      	isOpen: false,
+	      	editData: {}
+	    });
+	 }
+
 
 	render(){
+		
 		const { DataUsers } = this.props;
 		const cabeceras = [
 	      {key:1,nombre:"ID"},
 	      {key:2,nombre: "UserName"},
-	      {key:3,nombre: "Password"},
 	      {key:4,nombre: "Email"},
 	      {key:5,nombre: "Acciones"}
 	    ];
+	    console.log(actions)
 		return (
 			<div className="Users">
-			<h1>All users</h1>
+			 <button onClick={this.openModal} className= "btn btn-success">Add</button> 
+			<h2>All users</h2>
+			 <Modal className="modal"
+                show={this.state.isOpen}
+                onAfterOpen={this.afterOpenModal}
+                onClose={this.closeModal}
+                contentLabel="ModalForm" 
+              >
+               <h4>Cargar Usuarios</h4>
+                  <Formulario 
+                      passDataToParent = {this.getDataFormChild} 
+                      putCloseModal = {this.closeModal}
+                      dataToEdit={this.state.editData}
+                  />
+              </Modal>
 			<Table
 				cabeceras ={cabeceras}
         		tableData ={this.props.DataUsers}

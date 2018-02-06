@@ -19,8 +19,16 @@ class UsersApi {
     return apiFetch(API.USERS.DELETE,{},query,'',method);
   }
   static setLogginUser(query,data){
-    const method = "PUT";
+    const method = "POST";
     return apiFetch(API.USERS.SETLOGIN,{},query,data,method);
+  }
+  static addNewUser(data){
+    const method = "POST";
+    return apiFetch(API.USERS.ADD,{},'',data,method)
+  }
+  static editUsers(query,data){
+    const method = "PUT";
+    return apiFetch(API.USERS.EDIT,{},query,data, method)
   }
 }
 export default UsersApi;

@@ -64,11 +64,10 @@ class Table  extends Component {
                   <tr key={key}>
                     <td><Link to={`SingleArticle/${DataUsers._id}`} onClick={(event)=>this.props.singleParam(DataUsers._id)} >{DataUsers._id}</Link></td>
                     <td>{DataUsers.userName}</td>
-                    <td>{DataUsers.password}</td>
                     <td>{DataUsers.email}</td>
                     <td>
-                      <button className="btn btn-warning" id={DataUsers._id} onClick={(event)=>this.props.handleEditar(event.target.id)}>Editar</button> ||
-                      <button className="btn btn-danger" id={DataUsers._id} onClick={(event)=>this.props.handleEliminar(DataUsers._id)}>Eliminar</button>
+                      <button className="btn btn-warning boton" id={DataUsers._id} onClick={(event)=>this.props.handleEditar(event.target.id)}>Editar</button>
+                      <button className="btn btn-danger boton" id={DataUsers._id} onClick={(event)=>this.props.handleEliminar(DataUsers._id)}>Eliminar</button>
                     </td>
                   </tr>
                 )
@@ -85,6 +84,5 @@ class Table  extends Component {
         </div>
       );
     }
-
 }
 export default Table;

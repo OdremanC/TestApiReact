@@ -40,7 +40,6 @@ class Table  extends Component {
   }
 
   	render(){
-    console.log(this.props)
      	const { cabeceras, tableData } = this.props;
       const { data, numberPage, dataPerPage} = this.state;
 

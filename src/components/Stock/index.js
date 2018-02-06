@@ -12,6 +12,9 @@ import  Modal from '../Global/ModalComponent/Modal';
 import Table from './tableComponents/TableGenerator';
 import Formulario from './Formularios/formStock';
 import * as actions from './actions';
+import { getValueLogin } from '../Global/Functions/';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class Stock extends Component {
 	constructor(props){
@@ -30,6 +33,12 @@ class Stock extends Component {
 		deleteItem: PropTypes.func,
 		addStock: PropTypes.func,
 		editStock: PropTypes.func
+	}
+	
+	componentWillMount(){
+		if (getValueLogin() !== true) {
+		    this.props.history.push('/login');
+		}
 	}
 
 	componentDidMount(){
@@ -118,7 +127,7 @@ class Stock extends Component {
     return (
       <div className="Stock">
         
-        <button onClick={this.openModal} className="btn btn-success"><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+        <button onClick={this.openModal} className="btn btn-success">Add</button>
         <h2>Listado de Stock</h2>
         <Table  
         	cabeceras ={cabeceras}

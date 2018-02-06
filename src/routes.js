@@ -30,7 +30,7 @@ const AppRoutes = () =>
       <Route exact path="/stock" component={Stock} />
       <Route exact path="/SingleArticle/:id" component={ShowSigleArticle} />
       <Route exact path="/users" component={Users} />
-      <Route exact path="/" component={Login} />
+      <Route exact path="/login" component={Login} />
       <Route component={Page404} />
     </Switch>
   </App>;

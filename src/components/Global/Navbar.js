@@ -1,26 +1,49 @@
 // Dependencies
 import React, { Component } from 'react';  
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+//cookies
+import Cookies from 'universal-cookie';
+
+import * as actions from '../Users/actions';
+import { getValueLogin } from '../Global/Functions/';
+
+const cookies = new Cookies();
 
 
 // Assets
 import './css/Navbar.css';
 
 class Navbar extends Component {
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      dataMenu: [],
+      isLogin: false,
+      userName:''
+    }
+  }
   static propTypes = {
     title: PropTypes.string.isRequired,
     items: PropTypes.array.isRequired
   };
 
-  componentDidMount(){
+  logout = (event)=>{
 
+      event.preventDefault();
+      if (cookies.get('isLogged').isLogged === true) {
+       this.props.history.push('/login');
+        cookies.remove('isLogged');
+
+      }
   }
-
+  
   render() {
-    
-    const { title, items } = this.props;
+
+    const { title, items,logueado } = this.props;
+    const { userName,isLogin } =this.state;  
 
     return (
       <nav className="navbar navbar-expand-lg navbar-inverse">
@@ -31,19 +54,20 @@ class Navbar extends Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
               {
-                items && items.map(
+                getValueLogin() && items.map(
                   (item, key) => <li key={key} className="nav-li"><Link className="link-nav" to={item.url}>{item.title}</Link></li>
                 )
               }
           </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+            {
+              getValueLogin() && <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.logout}>Logout</button>
+            }
         </div>
       </nav>
     );
   }
 }
 
-export default Navbar;
+export default withRouter(connect(state=>({
+  routes: state.router
+}),actions)(Navbar));
