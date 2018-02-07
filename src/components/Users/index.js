@@ -70,11 +70,12 @@ class Users extends Component {
     	
 	    const query = dataFromForm.editID;
 	    const data = {
+	    	firstName: dataFromForm.firstName,
+	    	lastName: dataFromForm.lastName,
 	      	userName: dataFromForm.userName,
 	      	email: dataFromForm.email,
 	      	password: dataFromForm.password
 	    }
-
 	    if (query === undefined) {
 	    	this.props.AddUser(data);
 	    }else{
@@ -93,11 +94,13 @@ class Users extends Component {
 		const { DataUsers } = this.props;
 		const cabeceras = [
 	      {key:1,nombre:"ID"},
-	      {key:2,nombre: "UserName"},
-	      {key:4,nombre: "Email"},
-	      {key:5,nombre: "Acciones"}
+	      {key:2,nombre:'First Name'},
+	      {key:3,nombre:'Last Name'},
+	      {key:4,nombre: "UserName"},
+	      {key:5,nombre: "Email"},
+	      {key:6,nombre: "Acciones"}
 	    ];
-	    console.log(actions)
+	 
 		return (
 			<div className="Users">
 			 <button onClick={this.openModal} className= "btn btn-success">Add</button> 

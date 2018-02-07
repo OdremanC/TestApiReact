@@ -15,6 +15,7 @@ import Stock from './components/Stock';
 import Users from './components/Users';
 import Login from './components/Login';
 import Page404 from './components/Page404';
+import Usuario from './components/Users/user';
 
 
 
@@ -31,6 +32,7 @@ const AppRoutes = () =>
       <Route exact path="/SingleArticle/:id" component={ShowSigleArticle} />
       <Route exact path="/users" component={Users} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/user" component={Usuario} />
       <Route component={Page404} />
     </Switch>
   </App>;

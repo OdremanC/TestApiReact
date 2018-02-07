@@ -10,6 +10,8 @@ class Formulario extends Component{
 		super(props);
 
 		this.state = {
+			firstName: '',
+			lastName: '',
 			userName: '',
 			email: '',
 			password:'',
@@ -39,11 +41,21 @@ class Formulario extends Component{
 			this.setState({
 				password : event.target.value
 			});
+		}else if(event.target.id === 'firstName'){
+			this.setState({
+				firstName : event.target.value
+			});
+		}else if(event.target.id === 'lastName'){
+			this.setState({
+				lastName : event.target.value
+			});
 		}
 	}
 	componentDidMount(){
 
 		this.setState({
+			firstName: this.props.dataToEdit.firstName,
+			lastName: this.props.dataToEdit.lastName,
 			userName: this.props.dataToEdit.userName,
 			email: this.props.dataToEdit.email,
 			password: this.props.dataToEdit.password,
@@ -53,10 +65,15 @@ class Formulario extends Component{
 
 
 	render(){
+		
 		return(	
 			<form className="form" >
-			  	<label htmlFor="UserName"> Uusario:</label>
 			  	<input type="hidden" id ="editID" value={this.state.editID} name="editID" />
+			  	<label htmlFor="firstName"> firstName:</label>
+			  	<input type="text" className="form-control " id="firstName" placeholder="firstName..." value={this.state.firstName}  onChange={this.handleChange} />
+			  	<label htmlFor="lastName"> lastName:</label>
+			  	<input type="text" className="form-control " id="lastName" placeholder="lastName..." value={this.state.lastName}  onChange={this.handleChange} />
+			  	<label htmlFor="UserName"> Usario:</label>
 			  	<input type="text" className="form-control " id="userName" placeholder="userName..." value={this.state.userName}  onChange={this.handleChange} />
 			  	<label htmlFor="apellido">Email:</label>
 			  	<input type="email" className="form-control" id="email" placeholder="Email..." value={this.state.email}  onChange={this.handleChange} />
@@ -64,10 +81,10 @@ class Formulario extends Component{
 			  	<input type="password" className="form-control" id="password" placeholder="password..." value={this.state.password}  onChange={this.handleChange} />
 			  	<div className="row">
 			  		<div className="col-md-6 ">
-					  	<button className ="btn btn-success formButton" onClick={(event) => {this.props.passDataToParent(this.state)}}>Guardar</button>
+					  	<button className ="btn btn-success formButton" onClick={() => {this.props.passDataToParent(this.state)}}>Guardar</button>
 					</div>
 					<div className="col-md-6" >
-						<button className ="btn btn-danger formButton" onClick={(event)=>this.props.putCloseModal(false)} >close</button>
+						<button className ="btn btn-danger formButton" onClick={()=>this.props.putCloseModal(false)} >close</button>
 					</div>
 			  	</div>
 			</form>

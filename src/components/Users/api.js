@@ -30,5 +30,9 @@ class UsersApi {
     const method = "PUT";
     return apiFetch(API.USERS.EDIT,{},query,data, method)
   }
+  static getSingleUserProfile(query){ 
+    const method = "GET";
+    return apiFetch(API.USERS.GETSINGLE,{},query,'', method) 
+  }
 }
 export default UsersApi;

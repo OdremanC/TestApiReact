@@ -11,3 +11,13 @@ export function getValueLogin (){
         }
     }
 }
+
+export function getUserNameLogin (){
+    if (cookies.get('isLogged')) {
+        if (cookies.get('isLogged').isLogged === true) {
+            return cookies.get('isLogged').userName;
+        }else{
+          return false;
+        }
+    }
+}

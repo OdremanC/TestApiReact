@@ -49,7 +49,7 @@ class FormLogin extends Component{
 					    <label><b>Password</b></label>
 					    <input className="loginIn" type="password" placeholder="Enter Password" id="password" value={this.state.password} name="pass" onChange={this.handleChange} required />
 					        
-					    <button className="logbutton" type="button" onClick={(event) => {this.props.getDataFrom(this.state)}}>Login</button>
+					    <button className="logbutton" type="button" onClick={()=>{this.props.getDataFrom(this.state)}}>Login</button>
 					  </div>
 					</form>
 				</div>

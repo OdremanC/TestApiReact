@@ -1,5 +1,10 @@
 // API
 import UsersApi from './api'; 
+//cookies
+import Cookies from 'universal-cookie';
+
+
+const cookies = new Cookies();
 
 const GET_ALL_USERS = 'GET_ALL_USERS';
 const DELETE_USER = 'DELETE_USER';
@@ -7,6 +12,7 @@ const GET_USER = "GET_USER";
 const SET_LOGGIN_USER = "SET_LOGGIN_USER";
 const ADD_NEW_USER = "ADD_NEW_USER";
 const EDIT_USER = "EDIT_USER";
+const GET_USER_PROFILE = "GET_USER_PROFILE";
 
 
 export function getAllUsers() {
@@ -28,10 +34,24 @@ export function getUser(query){
 	}
 }
 export function setLogin(query,data){
+
+	const service = UsersApi.setLogginUser(query,data);
+	service.then(response => { 
+		if (response === true) {
+			const dataUser = {
+    				userName: data.userName, 
+    				isLogged:true
+    		};
+    		const fecha = new Date();
+			fecha.setMinutes(fecha.getMinutes() + 30);
+    		cookies.set('isLogged',dataUser , { path: '/', expires:fecha });
+		}	
+  });
 	return {
 		type: SET_LOGGIN_USER,
-		payload: UsersApi.setLogginUser(query,data)
+		payload: service
 	}
+	
 }
 export function AddUser(data){
 	return {
@@ -40,8 +60,17 @@ export function AddUser(data){
 	}
 }
 export function editUserData(query,data){
+  console.log(query)
+  console.log(data)
 	return {
 		type:EDIT_USER,
 		payload: UsersApi.editUsers(query,data)
+	}
+}
+export function getUserProfile(query){
+
+	return {
+		type: GET_USER_PROFILE,
+		payload: UsersApi.getSingleUserProfile(query)
 	}
 }

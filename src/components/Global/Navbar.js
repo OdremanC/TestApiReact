@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import Cookies from 'universal-cookie';
 
 import * as actions from '../Users/actions';
-import { getValueLogin } from '../Global/Functions/';
+import { getValueLogin, getUserNameLogin } from '../Global/Functions/';
 
 const cookies = new Cookies();
 
@@ -43,14 +43,14 @@ class Navbar extends Component {
   render() {
 
     const { title, items,logueado } = this.props;
-    const { userName,isLogin } =this.state;  
+    const { userName,isLogin } =this.state;
+    console.log(userName)  
 
     return (
       <nav className="navbar navbar-expand-lg navbar-inverse">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
               {
@@ -59,6 +59,9 @@ class Navbar extends Component {
                 )
               }
           </ul>
+          <div className="navbar-header">
+           <Link to="/user" className="navbar-brand userColor">{getUserNameLogin()}</Link>
+          </div>
             {
               getValueLogin() && <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.logout}>Logout</button>
             }

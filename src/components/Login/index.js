@@ -6,16 +6,12 @@ import { Link,withRouter } from 'react-router-dom';
 import { PropTypes,instanceOf}  from 'prop-types';
 //conexion a redux
 import { connect } from 'react-redux';
-
+import { getValueLogin } from '../Global/Functions/';
 //form
 import FormLogin from './Formularios/formLogin';
 
 import * as actions from '../Users/actions';
-//cookies
-import Cookies from 'universal-cookie';
 
-
-const cookies = new Cookies();
 
 class Login extends Component{
 	constructor(props){
@@ -25,8 +21,7 @@ class Login extends Component{
 			usuario: '',
 			isLogged: false,
 			error:''
-		}
-		
+		}	
 	}
 
 	static propTypes = {
@@ -34,58 +29,37 @@ class Login extends Component{
 		setLogin: PropTypes.func
 		
 	}
-
-
-	componentWillMount() {
-		//if(cookies.get('isLogged') === true);
-		
-  	}
-	componentDidMount(){
-    	
-		
-  	}
-	getDataFromForm = (e) => {
-    	//console.log(e)
-    	const query = e.usuario;
-	    	const data = {
-	    		userName:e.usuario,
-	    		password: e.password
-	    	};
-    	this.props.setLogin(query,data).then(value=>{
-    		if (value.value === true) {
-    			
-    			const dataUser = {
-    				userName: e.usuario, 
-    				isLogged:true
-    			};
-    			var fecha = new Date();
-				fecha.setMinutes(fecha.getMinutes() + 30);
-
-    			cookies.set('isLogged',dataUser , { path: '/', expires:fecha });
-
-    			this.props.history.push('/home');
-    			this.setState({
-    				isLogged: true,
-    				usuario: e.usuario
-    			});
-    		}else{
-    			this.setState({
-    				error: 'Los datos son incorrectos'
-    			});
-    		}
-    	});
+	componentWillReceiveProps(nextProps){
+		if(this.props.isLogged != nextProps.isLogged){
+			this.getIsLogged(nextProps.isLogged);
+		}
 	}
+
+	getIsLogged = (values) => {
+		if (values) {
+			this.props.history.push('/home');
+		}
+	}
+
+	getDataFromForm = (formValues) => {
+    	const query = formValues.usuario;
+	    	const data = {
+	    		userName:formValues.usuario,
+	    		password: formValues.password
+	    	};
+    	this.props.setLogin(query,data);
+	}
+	
 
 	render(){
 		
 		const { isLogged } = this.props;
-		const { usuario } = this.state;
+		//const { usuario } = this.state;
 
 		return(
 			<div className="loginPage">
 				<FormLogin 
-					getDataFrom ={e=>{this.getDataFromForm(e)}}
-					logged={this.state.isLogged}
+					getDataFrom ={this.getDataFromForm}
 					errorData={this.state.error}
 				>
 				</FormLogin>
@@ -94,5 +68,6 @@ class Login extends Component{
 	}
 }
 export default withRouter(connect(state=>({
-	routes: state.router
+	routes: state.router,
+	isLogged: state.usersData.isLogged
 }),actions)(Login));

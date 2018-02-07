@@ -44,7 +44,7 @@ export default function stockReducer(state = initialState, action){
 		}
 		case "ADD_NEW_USER_SUCCESS":{
 			const { payload: { response = [] }} = action;
-			const dataInsert = users.concat([action.payload]);  
+			const dataInsert = dataUsers.concat([action.payload]);  
 			return getNewState(state, {
 				users: dataInsert
 			});
@@ -60,7 +60,12 @@ export default function stockReducer(state = initialState, action){
 		    	users: dataUsers
 		    });
 		}
-		
+		case "GET_USER_PROFILE_SUCCESS": {
+			const { payload: {response = [] }} = action;
+			 return getNewState(state, {
+		    	singleUser: action.payload
+		    });
+		}
     	default:
       		return state;	
 	}

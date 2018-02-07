@@ -34,7 +34,7 @@ class Table  extends Component {
   }
 
     render(){
-      console.log(this.props)
+      
       const { cabeceras, tableData } = this.props;
       const { data, numberPage, dataPerPage} = this.state;
 
@@ -63,6 +63,8 @@ class Table  extends Component {
                 return (
                   <tr key={key}>
                     <td><Link to={`SingleArticle/${DataUsers._id}`} onClick={(event)=>this.props.singleParam(DataUsers._id)} >{DataUsers._id}</Link></td>
+                    <td>{DataUsers.firstName}</td>
+                    <td>{DataUsers.lastName}</td>
                     <td>{DataUsers.userName}</td>
                     <td>{DataUsers.email}</td>
                     <td>
