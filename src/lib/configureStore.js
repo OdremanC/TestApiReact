@@ -10,7 +10,7 @@ import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-ro
 export const history = createHistory();
 
 
-//despacha los actions 
+//middleware de redux, para despachar los actions e inyecta el isomorphic
 const injectMiddleware = deps => ({ dispatch, getState }) => next => action =>
   next(typeof action === 'function'
     ? action({ ...deps, dispatch, getState })

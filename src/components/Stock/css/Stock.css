@@ -5,9 +5,9 @@
 	width: 30%;
 	
 }
-.modal{
-	width: 500px;
-	height: 300px;
+.stockModal{
+	width: 500px !important;
+	height: 200px !important;
 
 }
 .formButton{
@@ -17,4 +17,7 @@
 .Stock{
 	margin-top: 5%;
 	margin-bottom: 3%;
+}
+.row {
+	margin-top: 5%;
 }

@@ -16,23 +16,22 @@ class Table  extends Component {
       numberPage: 1,
       data:[]
     }
- 
 	}
 
 	static propTypes = {
-    	tableData: PropTypes.array,
-    	cabeceras: PropTypes.array,
-    	handleEditarIndex: PropTypes.func,
-    	handleEliminar: PropTypes.func,
-      singleParam: PropTypes.func
+  	tableData: PropTypes.array,
+  	cabeceras: PropTypes.array,
+  	handleEditarIndex: PropTypes.func,
+  	handleEliminar: PropTypes.func,
+    singleParam: PropTypes.func
   };
-
 
   getDataPerPage = (event) =>{
     this.setState({
       dataPerPage:event
     });
   }
+
   getNumberPage = (event) =>{
     this.setState({
       numberPage:event

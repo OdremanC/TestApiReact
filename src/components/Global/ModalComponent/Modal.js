@@ -36,7 +36,7 @@ class Modal extends Component {
       backgroundColor: '#fff',
       borderRadius: 5,
       maxWidth: 500,
-      minHeight: 400,
+      minHeight: 300,
       margin: '100px auto 100px auto',
       padding: 30,
       display: 'block'

@@ -28,22 +28,28 @@ class Formulario extends Component{
 	}
 
 	handleChange =(event) =>{
-		if (event.target.id === 'nombre') {
-			this.setState({
-				nombre : event.target.value
-			});
-		}else if(event.target.id === 'apellido'){
-			this.setState({
-				apellido : event.target.value
-			});
-		}else if(event.target.id === 'dni'){
-			this.setState({
-				dni : event.target.value
-			});
-		}else if(event.target.id === 'estadoCivil'){
-			this.setState({
-				civilState : event.target.value
-			});
+
+		switch(event.target.id){
+			case"nombre":
+				this.setState({
+					nombre : event.target.value
+				});
+				break;
+			case"apellido":
+				this.setState({
+					apellido : event.target.value
+				});
+				break;
+			case"dni":
+				this.setState({
+					dni : event.target.value
+				});
+				break;
+			case"estadoCivil":
+				this.setState({
+					civilState : event.target.value
+				});
+				break;
 		}
 	}
 	componentDidMount(){
@@ -60,7 +66,6 @@ class Formulario extends Component{
 
 	render(){
 		return(
-
 			<form className="form" >
 			  	<label htmlFor="nombre"> Name:</label>
 			  	<input type="hidden" id ="editID" value={this.state.editID} name="editID" />
@@ -77,14 +82,13 @@ class Formulario extends Component{
 			  	</select>
 			  	<div className="row">
 			  		<div className="col-md-6 ">
-					  	<button className="btn btn-success" type="button" onClick={(event) => {this.props.passDataToParent(this.state)}}>Guardar</button> 
+					  	<button className="form-control btn btn-success" type="button" onClick={(event) => {this.props.passDataToParent(this.state)}}>Guardar</button> 
 					</div>
 					<div className="col-md-6" >
 						<button className ="form-control btn btn-danger" onClick={(event)=>this.props.putCloseModal(false)} >close</button>
 					</div>
 			  	</div>
 			</form>
-
 		);
 	}
 }

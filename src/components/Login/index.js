@@ -26,41 +26,31 @@ class Login extends Component{
 
 	static propTypes = {
 		getAllUsers: PropTypes.func,
-		setLogin: PropTypes.func
-		
-	}
-	componentWillReceiveProps(nextProps){
-		if(this.props.isLogged != nextProps.isLogged){
-			this.getIsLogged(nextProps.isLogged);
-		}
+		setLogin: PropTypes.func	
 	}
 
-	getIsLogged = (values) => {
-		if (values) {
+	componentWillReceiveProps(nextProps){
+		if(nextProps.isLogged){
 			this.props.history.push('/home');
 		}
 	}
 
 	getDataFromForm = (formValues) => {
-    	const query = formValues.usuario;
-	    	const data = {
-	    		userName:formValues.usuario,
-	    		password: formValues.password
-	    	};
-    	this.props.setLogin(query,data);
+  	const query = formValues.usuario;
+    const data = {
+    	userName:formValues.usuario,
+    	password: formValues.password
+    };
+  	this.props.setLogin(query,data);
 	}
 	
-
-	render(){
-		
-		const { isLogged } = this.props;
-		//const { usuario } = this.state;
-
+	render(){	
+		const { isLogged,loginError } = this.props;
 		return(
 			<div className="loginPage">
 				<FormLogin 
 					getDataFrom ={this.getDataFromForm}
-					errorData={this.state.error}
+					errorData={loginError}
 				>
 				</FormLogin>
 			</div>
@@ -69,5 +59,6 @@ class Login extends Component{
 }
 export default withRouter(connect(state=>({
 	routes: state.router,
-	isLogged: state.usersData.isLogged
+	isLogged: state.usersData.isLogged,
+  loginError: state.usersData.errorLogin
 }),actions)(Login));

@@ -31,20 +31,17 @@ class Navbar extends Component {
   };
 
   logout = (event)=>{
-
-      event.preventDefault();
-      if (cookies.get('isLogged').isLogged === true) {
-       this.props.history.push('/login');
-        cookies.remove('isLogged');
-
-      }
+    event.preventDefault();
+    if (cookies.get('isLogged').isLogged) {
+     cookies.remove('isLogged');
+     window.location.assign("http://localhost:3000/login")
+    }
   }
   
   render() {
 
     const { title, items,logueado } = this.props;
-    const { userName,isLogin } =this.state;
-    console.log(userName)  
+    const { userName,isLogin } =this.state;  
 
     return (
       <nav className="navbar navbar-expand-lg navbar-inverse">

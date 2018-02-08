@@ -44,15 +44,13 @@ class ProfilePage extends Component{
 		}		
 	}
 
-	componentWillReceiveProps(nextProps){
-		
+	componentWillReceiveProps(nextProps){	
 		if (JSON.stringify(this.props.dataProfile[0]) !== JSON.stringify(nextProps.dataProfile[0])) {
 			this.updateStateValues(nextProps.dataProfile[0]);
 		}
 	}
 
 	updateStateValues = (values) =>{
-		
 		this.setState({
 			firstName: values.firstName,
 			lastName: values.lastName,
@@ -62,37 +60,41 @@ class ProfilePage extends Component{
 			idEdit: values._id
 		});
 	}
-	
 
-
-	handleChange =(event) =>{
-		if (event.target.id === 'first_name') {
-			this.setState({
-				firstName : event.target.value
-			});
-		}else if(event.target.id === 'last_name'){
-			this.setState({
-				lastName : event.target.value
-			});
-		}else if(event.target.id === 'userName'){
-			this.setState({
-				userName : event.target.value
-			});
-		}else if(event.target.id === 'password'){
-			this.setState({
-				password : event.target.value
-			});
-		}else if(event.target.id === 'password_confirmation'){		
-			this.setState({
-				passwordConfirm : event.target.value,
-			});
+	handleChange = (event) =>{
+		
+		switch(event.target.id){
+			case 'first_name':
+				this.setState({
+					firstName : event.target.value
+				});
+				break;
+			case 'last_name':
+				this.setState({
+					lastName : event.target.value
+				});
+				break;
+			case 'userName':
+				this.setState({
+					userName : event.target.value
+				});
+				break;
+			case 'password':
+				this.setState({
+					password : event.target.value
+				});
+				break;
+			case 'password_confirmation':
+				this.setState({
+					passwordConfirm : event.target.value,
+				});
+				break;
 		}
 	}
 
 	render(){
 		
 		const { password, passwordConfirm } = this.state;
-		
 		return(
 			<div className="col-md-12">
 		    	<form role="form">
@@ -103,7 +105,7 @@ class ProfilePage extends Component{
 						<div className="col-xs-12 col-sm-6 col-md-6">
 							<div className="form-group">
 								<label htmlFor="firstName"> First Name:</label>
-		                        <input type="text" name="first_name" id="first_name" value={this.state.firstName} onChange={this.handleChange} className="form-control input-lg"  tabIndex="1" />
+		              <input type="text" name="first_name" id="first_name" value={this.state.firstName} onChange={this.handleChange} className="form-control input-lg"  tabIndex="1" />
 							</div>
 						</div>
 						<div className="col-xs-12 col-sm-6 col-md-6">
@@ -148,7 +150,7 @@ class ProfilePage extends Component{
 					<div className="row">
 						<div className="col-xs-12 col-md-6"></div>
 						<div className="col-xs-12 col-md-6">
-							<button className ="btn btn-success formButton" onClick={() => {this.props.passDataToParent(this.state)}}>Guardar</button>
+							<button type="button" className ="btn btn-success formButton" onClick={() => {this.props.passDataToParent(this.state)}}>Guardar</button>
 						</div>
 					</div>
 				</form>

@@ -24,11 +24,13 @@ class Usuario extends Component{
 	componentWillMount(){
 		if (getValueLogin() !== true) {
         	this.props.history.push('/login');
-    	}
+    }
 		const query = getUserNameLogin();
 		this.props.getUserProfile(query);
 	}
+
   getDataFormChild = (dataForm) => {
+
     const query = dataForm.idEdit;
     
     if(!dataForm.password){

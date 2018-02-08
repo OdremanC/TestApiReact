@@ -15,11 +15,10 @@ class Table  extends Component {
       numberPage: 1,
       data:[]
     }
- 
   }
 
   static propTypes = {
-      tableData: PropTypes.array    
+    tableData: PropTypes.array    
   };
 
   getDataPerPage = (event) =>{
@@ -27,6 +26,7 @@ class Table  extends Component {
       dataPerPage:event
     });
   }
+
   getNumberPage = (event) =>{
     this.setState({
       numberPage:event
@@ -42,7 +42,6 @@ class Table  extends Component {
       const indexOfFirstTodo = indexOfLastTodo - dataPerPage;
       const currentData = tableData.slice(indexOfFirstTodo, indexOfLastTodo);
 
-  //console.log(this.props)
       return(
         <div className="Table">
         <table className="table">
@@ -56,7 +55,6 @@ class Table  extends Component {
           }
         
           </thead>
-           
           <tbody>
             {
               currentData.map((DataUsers, key) => {
@@ -82,7 +80,6 @@ class Table  extends Component {
           getDataPage ={(event)=>this.getDataPerPage(event)}
           PageNumber = {(event)=>this.getNumberPage(event)}
         />
-
         </div>
       );
     }

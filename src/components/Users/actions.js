@@ -15,11 +15,14 @@ const EDIT_USER = "EDIT_USER";
 const GET_USER_PROFILE = "GET_USER_PROFILE";
 
 
-export function getAllUsers() {
-	return {
-    type: GET_ALL_USERS,
-    payload: UsersApi.getUsersData()
-  }
+export function getAllUsers(){
+  
+  return dispatch => {
+    return {
+      type: GET_ALL_USERS,
+      payload: UsersApi.getUsersData()
+    }
+  };  
 }
 export function deleteUser(query){
 	return{
@@ -33,19 +36,27 @@ export function getUser(query){
 		payload: UsersApi.getUserToLogin(query)
 	}
 }
+
+export function setLoginError (){
+  return{
+    type:SET_LOGIN_ERROR,
+    payload: "Datos suministrados incorrectos"
+  }
+}
 export function setLogin(query,data){
 
 	const service = UsersApi.setLogginUser(query,data);
-	service.then(response => { 
-		if (response === true) {
+	service.then(response => {
+    console.log(response) 
+		if (response) {
 			const dataUser = {
     				userName: data.userName, 
     				isLogged:true
-    		};
-    		const fecha = new Date();
+    	};
+    	const fecha = new Date();
 			fecha.setMinutes(fecha.getMinutes() + 30);
-    		cookies.set('isLogged',dataUser , { path: '/', expires:fecha });
-		}	
+    	cookies.set('isLogged',dataUser , { path: '/', expires:fecha });
+		}
   });
 	return {
 		type: SET_LOGGIN_USER,
@@ -60,8 +71,6 @@ export function AddUser(data){
 	}
 }
 export function editUserData(query,data){
-  console.log(query)
-  console.log(data)
 	return {
 		type:EDIT_USER,
 		payload: UsersApi.editUsers(query,data)

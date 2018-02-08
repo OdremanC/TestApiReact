@@ -15,11 +15,10 @@ class Table  extends Component {
       numberPage: 1,
       data:[]
     }
- 
 	}
 
 	static propTypes = {
-    	tableData: PropTypes.array  	
+    tableData: PropTypes.array  	
   };
 
   getDataPerPage = (event) =>{
@@ -27,24 +26,24 @@ class Table  extends Component {
       dataPerPage:event
     });
   }
+
   getNumberPage = (event) =>{
     this.setState({
       numberPage:event
     });
   }
 
-  	render(){
-      //console.log(this.state)
-   	  const { cabeceras, tableData } = this.props;
-      const { data, numberPage, dataPerPage} = this.state;
+  render(){
+      
+ 	  const { cabeceras, tableData } = this.props;
+    const { data, numberPage, dataPerPage} = this.state;
 
-      const indexOfLastTodo = numberPage * dataPerPage;
-      const indexOfFirstTodo = indexOfLastTodo - dataPerPage;
-      const currentData = tableData.slice(indexOfFirstTodo, indexOfLastTodo);
+    const indexOfLastTodo = numberPage * dataPerPage;
+    const indexOfFirstTodo = indexOfLastTodo - dataPerPage;
+    const currentData = tableData.slice(indexOfFirstTodo, indexOfLastTodo);
 
-	//console.log(this.props)
-  		return(
-  			<div className="Table">
+		return(
+			<div className="Table">
   			<table className="table">
   				<thead className="thead-dark">
   				{
@@ -54,26 +53,24 @@ class Table  extends Component {
   						);	
   					})
   				}
-  			
   				</thead>
-  				 
   				<tbody>
   					{
-		              currentData.map((inventario, key) => {
-		                return (
-		                  <tr key={key}>
-		                    <td><Link to={`SingleArticle/${inventario._id}`} onClick={(event)=>this.props.singleParam(inventario._id)} >{inventario._id}</Link></td>
-		                    <td>{inventario.cantidad}</td>
-		                    <td>{inventario.articulo}</td>
-                        <td>{inventario.categoria}</td>
-		                    <td>
-		                      <button className="btn btn-warning boton" id={inventario._id} onClick={(event)=>this.props.handleEditar(event.target.id)}>Editar</button>
-		                      <button className="btn btn-danger boton" id={inventario._id} onClick={(event)=>this.props.handleEliminar(inventario._id)}>Eliminar</button>
-		                    </td>
-		                  </tr>
-		                )
-		              })
-	            	}
+  	          currentData.map((inventario, key) => {
+                return (
+                  <tr key={key}>
+                    <td><Link to={`SingleArticle/${inventario._id}`} onClick={(event)=>this.props.singleParam(inventario._id)} >{inventario._id}</Link></td>
+                    <td>{inventario.cantidad}</td>
+                    <td>{inventario.articulo}</td>
+                    <td>{inventario.categoria}</td>
+                    <td>
+                      <button className="btn btn-warning boton" id={inventario._id} onClick={(event)=>this.props.handleEditar(event.target.id)}>Editar</button>
+                      <button className="btn btn-danger boton" id={inventario._id} onClick={(event)=>this.props.handleEliminar(inventario._id)}>Eliminar</button>
+                    </td>
+                  </tr>
+                )
+              })
+          	}
   				</tbody>
   			</table>
         <Paginador
@@ -81,10 +78,9 @@ class Table  extends Component {
           getDataPage ={(event)=>this.getDataPerPage(event)}
           PageNumber = {(event)=>this.getNumberPage(event)}
         />
-
-  			</div>
-  		);
-  	}
+			</div>
+		);
+  }
 
 }
 export default Table;

@@ -8,34 +8,32 @@ import * as actions from './actions';
 
 class ShowSigleArticle extends Component{
 
-	 constructor(props){
+	constructor(props){
 	 	super(props);
-	 	this.state={
-	 		
+	 	this.state={	
 	 	}
-	 }
+	}
 
-	 static propTypes = {
+	static propTypes = {
 	 	getSingleData: PropTypes.func
-	 }
-	 componentDidMount(){
-	 	
+	}
+	componentDidMount(){ 	
 	 	if (this.props.match.params.id) {
 	 		const query = this.props.match.params.id;
 	 		this.props.getSingleData(query);
 	 	}
-	 }
+	}
 
-	 render(){
-	  	const { SigleData } = this.props;
+	render(){
+	 	const { SigleData } = this.props;
 	 	return (
 	 		<div>
-	            <h2>Articulo:</h2>
-	            <p>Nombre: <b>{SigleData.cantidad}</b></p>
-	            <p>Apellido: <b>{SigleData.articulo}</b></p>
-	            <p>DNI: <b>{SigleData.categoria}</b></p>
-	           	<Link to="/stock" className="btn btn-success">Volver</Link>
-	        </div>
+        <h2>Articulo:</h2>
+        <p>Nombre: <b>{SigleData.cantidad}</b></p>
+        <p>Apellido: <b>{SigleData.articulo}</b></p>
+        <p>DNI: <b>{SigleData.categoria}</b></p>
+       	<Link to="/stock" className="btn btn-success">Volver</Link>
+	    </div>
 	 	);
 	 }
 }

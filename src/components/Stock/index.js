@@ -138,11 +138,11 @@ class Stock extends Component {
         >
         </Table>
 
-        <Modal
+        <Modal className="stockModal"
         	show={this.state.isOpen}
-            onAfterOpen={this.afterOpenModal}
-            onClose={this.closeModal}
-            contentLabel="ModalForm" 
+          onAfterOpen={this.afterOpenModal}
+          onClose={this.closeModal}
+          contentLabel="ModalForm" 
         >
         	<center><h2>Cargar Stock</h2></center>
         	<Formulario

@@ -16,23 +16,11 @@ import { getValueLogin } from '../Global/Functions/';
 //formulario
 import Formulario from './Formularios/formClientes';
 import ShowClienteComp from './ShowClientesComp';
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
 
 
 class Home extends Component {
 
-  static propTypes = {
-    isMobile: PropTypes.bool,
-    passAllData: PropTypes.func.isRequired,
-    deleteCliente: PropTypes.func.isRequired,
-    editCliente: PropTypes.func.isRequired,
-    handleEditar: PropTypes.func,
-    submittedValues:PropTypes.array,
-    dataRender: PropTypes.func
-  };
-
-  constructor(props) {
+   constructor(props) {
     super(props);
 
     this.state = {
@@ -47,6 +35,16 @@ class Home extends Component {
     this.handleEditarIndex = this.handleEditarIndex.bind(this);
   }
 
+  static propTypes = {
+    isMobile: PropTypes.bool,
+    passAllData: PropTypes.func.isRequired,
+    deleteCliente: PropTypes.func.isRequired,
+    editCliente: PropTypes.func.isRequired,
+    handleEditar: PropTypes.func,
+    submittedValues:PropTypes.array,
+    dataRender: PropTypes.func
+  };
+
   openModal =() =>{
     this.setState({
       isOpen: !this.state.isOpen
@@ -60,7 +58,6 @@ class Home extends Component {
     });
   }
   componentWillMount(){
-
     if (getValueLogin() !== true) {
          this.props.history.push('/login');
     }
@@ -143,36 +140,36 @@ class Home extends Component {
     return (
       <div>
         <div className="Home" >
-            <button onClick={this.openModal} className= "btn btn-success">Add</button> 
+          <button onClick={this.openModal} className= "btn btn-success">Add</button> 
 
-            <h2>Listado de Clientes</h2>
-            <div >
+          <h2>Listado de Clientes</h2>
+          <div >
              
-              <Modal 
-                show={this.state.isOpen}
-                onAfterOpen={this.afterOpenModal}
-                onClose={this.closeModal}
-                contentLabel="ModalForm" 
-              >
-               <h4>Cargar Clientes</h4>
-                  <Formulario 
-                      passDataToParent = {this.getDataFormChild} 
-                      putCloseModal = {this.closeModal}
-                      dataToEdit={this.state.editData}
-                  />
-              </Modal>
-              <Table 
-                handleEditar={this.handleEditarIndex} 
-                handleEliminar={e =>{this.handleEliminarIndex(e)}}  
-                tableData={this.props.clientes} 
-                cabeceras={cabeceras}
-                singleParam={e=>{this.singleClient(e)}}
+            <Modal 
+              show={this.state.isOpen}
+              onAfterOpen={this.afterOpenModal}
+              onClose={this.closeModal}
+              contentLabel="ModalForm" 
+            >
+              <h4>Cargar Clientes</h4>
+              <Formulario 
+                passDataToParent = {this.getDataFormChild} 
+                putCloseModal = {this.closeModal}
+                dataToEdit={this.state.editData}
               />
-              <p>
-                {isMobile ? 'Mobile device' : 'Desktop device'}
-              </p>
-            </div>
+            </Modal>
+            <Table 
+              handleEditar={this.handleEditarIndex} 
+              handleEliminar={e =>{this.handleEliminarIndex(e)}}  
+              tableData={this.props.clientes} 
+              cabeceras={cabeceras}
+              singleParam={e=>{this.singleClient(e)}}
+            />
+            <p>
+              {isMobile ? 'Mobile device' : 'Desktop device'}
+            </p>
           </div>
+        </div>
       </div>   
     );
   }
