@@ -21,3 +21,13 @@ export function getUserNameLogin (){
         }
     }
 }
+
+export function getAlbumID (){
+    if (cookies.get('albumSelected')) {
+        if (cookies.get('albumSelected').albumID !== '') {
+            return cookies.get('albumSelected').albumID;
+        }else{
+          return false;
+        }
+    }
+}

@@ -31,7 +31,7 @@ class Login extends Component{
 
 	componentWillReceiveProps(nextProps){
 		if(nextProps.isLogged){
-			this.props.history.push('/home');
+			this.props.history.push('/');
 		}
 	}
 

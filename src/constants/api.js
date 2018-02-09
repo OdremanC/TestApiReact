@@ -7,13 +7,6 @@ export const API = Object.freeze({
   	DELETECLIENT: '/client/',
   	UPDATE: '/client/'
   },
-  STOCK:{
-  	ALLSTOCK: '/stock',
-  	DELETE: '/stock/',
-  	ADDITEM: '/stock',
-  	EDITITEM: '/stock/',
-    GETSINGLE: '/stock/'
-  },
   USERS:{
     ALLUSERS: '/users',
     DELETE:  '/users/',
@@ -21,6 +14,10 @@ export const API = Object.freeze({
     ADD: '/users',
     EDIT: '/users/',
     GETSINGLE: '/users/userName/'
+  },
+  GALLERY:{
+    ALBUMS: '/gallery',
+    ALBUM: '/gallery/'
   }
 
 });

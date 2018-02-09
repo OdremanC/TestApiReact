@@ -16,6 +16,8 @@ import { getValueLogin } from '../Global/Functions/';
 //formulario
 import Formulario from './Formularios/formClientes';
 import ShowClienteComp from './ShowClientesComp';
+//tooltips
+import ReactTooltip from 'react-tooltip';
 
 
 class Home extends Component {

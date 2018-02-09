@@ -10,12 +10,13 @@ import { connect } from 'react-redux';
 import App from './components/App';
 import Home from './components/Home';
 import SingleClient from './components/Home/ShowClientesComp';
-import ShowSigleArticle from './components/Stock/ShowSingleArticle';
-import Stock from './components/Stock';
+import Gallery from './components/GalleryPhoto';
+import AlbumGallery from './components/GalleryPhoto/albumGallery';
 import Users from './components/Users';
 import Login from './components/Login';
 import Page404 from './components/Page404';
 import Usuario from './components/Users/user';
+import CreateAlbums from './components/GalleryPhoto/createAlbum';
 
 
 
@@ -26,10 +27,11 @@ const AppRoutes = () =>
   
   <App>
     <Switch>
-      <Route exact path="/Home" component={Home} />
+      <Route exact path="/" component={Home} />
       <Route exact path="/SingleClient/:id" component={SingleClient} />
-      <Route exact path="/stock" component={Stock} />
-      <Route exact path="/SingleArticle/:id" component={ShowSigleArticle} />
+      <Route exact path="/gallery" component={Gallery} />
+      <Route exact path="/galleryPhoto/:id" component={AlbumGallery} />
+      <Route exact path="/albums" component={CreateAlbums} />
       <Route exact path="/users" component={Users} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/user" component={Usuario} />

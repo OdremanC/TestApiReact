@@ -6,10 +6,11 @@ import { combineReducers } from 'redux';
 //clientes
 import clientesData from '../components/Home/reducer';
 
-//stock
-import stockData from '../components/Stock/reducer';
 //USERS
 import usersData from '../components/Users/reducer';
+
+//GALLERY
+import galleryReducer from '../components/GalleryPhoto/reducer';
 
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 
@@ -19,9 +20,9 @@ import device from './deviceReducer';
 const rootReducer = combineReducers({
   device,
   clientesData,
-  stockData,
   usersData,
-  router: routerReducer
+  router: routerReducer,
+  galleryReducer
 });
 
 export default rootReducer;

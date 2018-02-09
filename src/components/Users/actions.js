@@ -2,8 +2,6 @@
 import UsersApi from './api'; 
 //cookies
 import Cookies from 'universal-cookie';
-
-
 const cookies = new Cookies();
 
 const GET_ALL_USERS = 'GET_ALL_USERS';
@@ -47,11 +45,11 @@ export function setLogin(query,data){
 
 	const service = UsersApi.setLogginUser(query,data);
 	service.then(response => {
-    console.log(response) 
+    
 		if (response) {
 			const dataUser = {
-    				userName: data.userName, 
-    				isLogged:true
+    		userName: data.userName, 
+    		isLogged:true
     	};
     	const fecha = new Date();
 			fecha.setMinutes(fecha.getMinutes() + 30);

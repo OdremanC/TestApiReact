@@ -1,0 +1,22 @@
+.gallery{
+  margin-top: 2%;
+}
+.albumContainer{
+  margin: 1% 1%;
+}
+
+.fotosContainer{
+  margin-top: 1px;
+}
+
+.imagenGallery {
+  display: block;
+  object-fit: cover;
+}
+
+/* Styles related to the thumbnails */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+}
