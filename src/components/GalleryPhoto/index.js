@@ -39,9 +39,13 @@ class GalleryPhotography extends Component{
       this.props.setSelected(id);
       this.props.history.push('/galleryPhoto/'+id);
   }
+  deleteAlbum = (id) => {
+    const query = id;
+    this.props.deleteAlbum(query);
+  }
 
   render(){
-    //console.log(this.props.albums)
+    
     const { albums } = this.props;
     return(
       <div className="gallery">
@@ -51,14 +55,15 @@ class GalleryPhotography extends Component{
             <Link to="/albums" className="btn btn-success">+</Link>
           </p>
           <div className="container albunGallery">
-            <div className="row border ">
+            
 
               <AlbumMaker
                 dataAlbums={albums}
                 sendIdToParent={this.showGallery}
+                passId={this.deleteAlbum}
               >
               </AlbumMaker>
-            </div>
+            
           </div>
           
         </div>

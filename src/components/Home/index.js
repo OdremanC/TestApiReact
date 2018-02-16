@@ -12,7 +12,7 @@ import  Table from './tableComponents/TableGenerator';
 // Actions
 import * as actions from './actions';
 
-import { getValueLogin } from '../Global/Functions/';
+import { getValueLogin,getUserIdFromCookie } from '../Global/Functions/';
 //formulario
 import Formulario from './Formularios/formClientes';
 import ShowClienteComp from './ShowClientesComp';
@@ -60,6 +60,7 @@ class Home extends Component {
     });
   }
   componentWillMount(){
+    
     if (getValueLogin() !== true) {
          this.props.history.push('/login');
     }

@@ -17,7 +17,9 @@ export const API = Object.freeze({
   },
   GALLERY:{
     ALBUMS: '/gallery',
-    ALBUM: '/gallery/'
+    ALBUM: '/gallery/',
+    DELETEALBUM: '/gallery/',
+    DELETEPICS : '/gallery/delete/'
   }
 
 });

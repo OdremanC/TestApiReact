@@ -1,6 +1,6 @@
 //Dependencias
 import React, { Component } from 'react';
-import { Form, Text,FormField } from 'react-form';
+
 import PropTypes  from 'prop-types';
 import '../css/users.css';
 

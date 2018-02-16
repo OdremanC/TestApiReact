@@ -18,14 +18,27 @@ class CreateAlbums extends Component{
   static propTypes = {
 
   }
-
+  componentWillMount(){
+    if (getValueLogin() !== true) {
+      this.props.history.push('/login');
+    }
+  }
+  getData = (formData)=>{
+    
+    this.props.addNewAlbum(formData);
+  }
   render(){
+    
     return(
       <div className="createAlbums">
       
-      <FormCreateAlbums />
+      <FormCreateAlbums 
+        getDataForm={this.getData}
+      />
       </div>
     );
   }
 }
-export default CreateAlbums;
+export default connect(state =>({
+
+}), actions)(CreateAlbums);

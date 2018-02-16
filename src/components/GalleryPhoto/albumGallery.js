@@ -10,6 +10,7 @@ import Gallery from 'react-photo-gallery';
 // Actions
 import * as actions from './actions';
 import { getAlbumID , getValueLogin } from '../Global/Functions/';
+import { Lightbox } from 'react-modal-image';
 
 
 class AlbumGallery extends Component {
@@ -17,7 +18,9 @@ class AlbumGallery extends Component {
     super(props);
 
     this.state = {
-      fotos:[]
+      fotos:[],
+      open:false,
+      imgToModal:''
     }
   }
 
@@ -36,14 +39,15 @@ class AlbumGallery extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps){ 
+  componentWillReceiveProps(nextProps){
+
     if(nextProps){
+      
       const data = nextProps.album.photos.map((fotos ,key )=> {
         return(
           {         
-            src: fotos.url,
-            width: 0.005,
-            height: 0.005
+            src: fotos.name,
+            id: fotos._id
           }
         );
       })
@@ -57,11 +61,29 @@ class AlbumGallery extends Component {
     event.preventDefault();
     this.props.history.push('/gallery')
   }
+  handleImage = (e) =>{
+    this.setState({
+      open:true,
+      imgToModal:e.target.src
+    });
+  }
+  closeLightbox = () =>{
+    this.setState({
+      open:false
+    });
+  }
+  deletePic = (event) =>{
+    const data = {
+      photoID: event.target.id
+    };
+    const query = this.props.match.params.id;
+    this.props.deletePics(query,data);
+  }
 
   render(){
     const { album } = this.props;
-    const { fotos } = this.state;
-
+    const { fotos,imgToModal } = this.state;
+    
     return(
       <div className="gallery">
       <div>
@@ -74,13 +96,34 @@ class AlbumGallery extends Component {
               fotos && fotos.map((fotos , key) => {
                 return(
                   <div key={key} className="col-md-3 border fotosContainer">
-                    <img src={fotos.src} id={fotos.src} alt="Fotos" className="responsive-img" />
-                    <div className="col-md-3 ">
-                    <p>{album.albumTitle}</p>
+                    <div className="row">
+                      <div className="col-12">
+                        <img onClick={ (e) => {this.handleImage(e)} } src={fotos.src} id={fotos.id} alt="Fotos" className="responsive-img" />
+                      </div>
+                    </div>
+                    <div className="row ">
+                      <div className="col-12">
+                        <div>{album.albumTitle}</div>
                     </div>
                   </div>
+                  <div className="row ">
+                      <div className="col-12">
+                        <div><button className="btn btn-danger small" id={fotos.id} onClick={(event)=>{this.deletePic(event)}}>Delete</button></div>
+                    </div>
+                  </div>
+                </div>
                 );
               })
+            }
+            {
+               this.state.open && (
+                 <Lightbox
+                  medium={imgToModal}
+                  alt="ChristPics"
+                  onClose={this.closeLightbox}
+                />
+
+              )
             }
             
           </div>
@@ -90,5 +133,5 @@ class AlbumGallery extends Component {
   }
 }
 export default connect(state=>({
-  album: state.galleryReducer.selectedAlbun
+  album: state.galleryReducer.photoAlbum
 }),actions)(AlbumGallery);

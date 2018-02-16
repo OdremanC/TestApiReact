@@ -11,7 +11,7 @@ const initialState = {
 	errorSubmit:''
 }
 
-export default function stockReducer(state = initialState, action){
+export default function usersData(state = initialState, action){
 	const dataUsers = Object.assign([], state.users);
 
 	switch(action.type){
@@ -41,7 +41,7 @@ export default function stockReducer(state = initialState, action){
 	    case "SET_LOGGIN_USER_SUCCESS":{
 			const { payload: { response = [] }} = action;
 			return getNewState(state, {
-				isLogged:action.payload
+				isLogged:action.payload.isLogged
 			});
 		}
 		case "ADD_NEW_USER_SUCCESS":{

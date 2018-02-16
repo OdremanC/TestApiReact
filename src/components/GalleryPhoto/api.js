@@ -13,6 +13,18 @@ class GalleryApi {
     const method = "GET";
     return apiFetch(API.GALLERY.ALBUM,{},query,'', method);
   }
+  static createAlbum(data){
+    const method = "POST";
+    return apiFetch(API.GALLERY.ALBUMS, {}, '',data, method);
+  }
+  static deleteAlbumGallery(query){
+    const method = "DELETE";
+    return apiFetch(API.GALLERY.DELETEALBUM, {},query, '', method);
+  }
+  static deleteSomePic(query,data){
+    const method = "DELETE";
+    return apiFetch(API.GALLERY.DELETEPICS, {},query, data, method); 
+  }
 }
 
 export default GalleryApi;

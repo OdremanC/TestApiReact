@@ -42,12 +42,13 @@ export function setLoginError (){
   }
 }
 export function setLogin(query,data){
-
+  
 	const service = UsersApi.setLogginUser(query,data);
 	service.then(response => {
-    
+
 		if (response) {
 			const dataUser = {
+        userID: response.userID,
     		userName: data.userName, 
     		isLogged:true
     	};

@@ -21,6 +21,15 @@ export function getUserNameLogin (){
         }
     }
 }
+export function getUserIdFromCookie (){
+    if (cookies.get('isLogged')) {
+        if (cookies.get('isLogged').isLogged === true) {
+            return cookies.get('isLogged').userID;
+        }else{
+          return false;
+        }
+    }
+}
 
 export function getAlbumID (){
     if (cookies.get('albumSelected')) {

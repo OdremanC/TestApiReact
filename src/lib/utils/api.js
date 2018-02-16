@@ -33,17 +33,14 @@ export function apiEndpoint(endpoint, query) {
 
 //configuracion de los headers 
 export function apiOptions(options = {} , data = '', method ='') {
-  
   //const method = method != '' ? 'POST' : 'GET';
-
   const headers = {
-      'Content-Type': 'application/json'
+    'Content-Type': 'application/json'
   };
- 
+  
   let newOptions = {
     method,
-    headers,
-   
+    headers
   };
 
   if (data != '') {

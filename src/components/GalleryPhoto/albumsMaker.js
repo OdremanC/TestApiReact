@@ -21,21 +21,35 @@ class AlbumsMaker extends Component{
   }
 
   render(){
-    //console.log(this.props.dataAlbums)
+    
     const { dataAlbums } = this.props;
-
+    
     return(
-      <div>
+      <div className="row border ">
       {
         dataAlbums && dataAlbums.map((album , key) => {
           return(
             <div key={key} className="col-md-3 border albumContainer">
-              <img src={album.photos[0].url} alt="Fotos" className="responsive-img" />
-              <div className="col-md-3 ">
-              <p>{album.albumTitle}</p>
-              <button className="btn btn-default" id={album._id} onClick={(event)=>{this.props.sendIdToParent(event.target.id)}}>ver</button>
+            <div className="row">
+              <div className="col-12">
+                <img alt="Fotos" src={album.portada} className="responsive-img" width="200px" height="200px" />
               </div>
             </div>
+            <div className="row">
+              <div className="col-12">
+                <div>{album.albumTitle}</div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-6">
+                <button className="btn btn-default" id={album._id} onClick={(event)=>{this.props.sendIdToParent(event.target.id)}}>ver</button>
+              </div>
+              <div className="col-6">
+                <button className="btn btn-danger" id={album._id} onClick={(event)=>{this.props.passId(event.target.id)}}>Delete</button>
+              </div>
+            </div>  
+          </div>
+            
           );
         })
       }
